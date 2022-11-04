@@ -1,0 +1,34 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Kuhpik;
+using Snippets.Tutorial;
+using UnityEngine;
+using System.Linq;
+
+[Serializable]
+public class #SCRIPTNAME# : TutorialStep
+{
+    GameData game;
+    PlayerData player;
+    GameConfig config;
+
+    protected override void OnBegin()
+    {
+        game = Bootstrap.Instance.GameData;
+        player = Bootstrap.Instance.PlayerData;
+        config = Bootstrap.Instance.config;
+        //screen = UnityEngine.Object.FindObjectOfType<UpgradeScreen>(true);
+    }
+
+    protected override void OnComplete()
+    {
+        game.TutorialArrow.target = null;
+        game.TutorialArrow2D.target = null;
+    }
+
+    public override void OnUpdate()
+    {
+        //     Complete();
+    }
+}

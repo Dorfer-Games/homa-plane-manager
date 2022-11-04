@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3033154237897815617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7349429422596956347}
+  - component: {fileID: 7376053126497230601}
+  m_Layer: 0
+  m_Name: PlayersNames
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7349429422596956347
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3033154237897815617}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.48267007, y: 1.3262734, z: -2.8233373}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7376053126497230601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3033154237897815617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 951a69b588256ef4fabe9271981b5acf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NamesList:
+  - Valery L.
+  - ColonelKotya
+  - Dolphin1990
+  - disperion
+  - Vusar
+  - Vic_1
+  - Dimarik-NV
+  - ScArFaCe
+  - Lost_mind
+  - -Lapin-
+  - xS > DRIFT
+  - Doctor Alibi
+  - indieCurator
+  - Tuna Mav
+  - baty131
+  - dhueso_EC
+  - AriElf
+  - Hade_Vlot
+  - User_1999120
+  - User_1782838
+  - Idler
+  - mr.Jewbocabra
+  - NastyTwitch
+  - Neo3D
+  - Epsonchik
+  - MILFer
+  - Sheldon Cooper
+  - Le0nard0
+  - SaInT
+  - Sanitizer
+  - =Chieftan=
+  - Meune
+  - Anti-Ded
+  - Komatoz!
+  - Dorfer Games
+  - Durilka_14
+  - Gambit_1990
+  - Feuner_2004
+  - Temuch_5000
+  - Nick
+  - Zur
+  - Shooter
+  - _Dark_
+  - Desertir
+  - ArHimoND
+  - -=-Jojo-=-
+  - +Fur Idioten+
+  - Jeleznodorojnik
+  - Sergey Lebedev
+  - FluffY
+  - Dionis
+  - KryuK
+  - Mr.Fact
+  - DIMARIK-NV
+  - Cerberus
+  - MariaIvanna
+  - URBAN
+  - Andrei
+  - Bad_Angel
+  - Rauf
+  - Puffff
+  - kajirn
+  - AnalniyKinjal
+  - Limiter
+  - Fungineerka
+  - Inferno315

@@ -1,0 +1,1 @@
+//[assembly: DeclareDefine("SDK", "Amplitude", "Включает плагин Amplitude")]
