@@ -12,6 +12,9 @@ namespace Kuhpik
     [Serializable]
     public class PlayerData
     {
+
+
+        // OLD
         public int SessionCounter;
         public bool Ads;
         public int Level;

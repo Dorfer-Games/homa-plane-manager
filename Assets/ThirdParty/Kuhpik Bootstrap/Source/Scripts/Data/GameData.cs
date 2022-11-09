@@ -12,8 +12,23 @@ namespace Kuhpik
     [Serializable]
     public class GameData
     {
+        public ControllerType CameraController;
+
+        public Vector3 Direction;
+
+        public AirplaneComponent Airplane;
+
+        public CharacterComponent Player;
+        public float PlayerSpeed;
+        public List<ItemComponent> PlayerItemList;
+
+        public List<PeopleData> PeoplePlatformList;
+        public List<PeopleData> PeopleOnPlaneList;
+        public List<PeopleData> PeoplePlaneList;
+
+        // OLD
         [Header("--------------Player------------")]
-        public PlayerComponent Player;
+        public PlayerComponent PlayerOld;
         public Vector3 Joystick;
         public bool ControlBlock;
 

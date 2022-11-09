@@ -3,12 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Baggage
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - NotObstacle
   - Water
   - UI
   - 
