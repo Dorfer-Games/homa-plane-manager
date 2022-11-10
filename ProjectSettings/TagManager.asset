@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Baggage
+  - Shelf
   layers:
   - Default
   - TransparentFX

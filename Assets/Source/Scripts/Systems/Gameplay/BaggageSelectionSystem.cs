@@ -30,9 +30,6 @@ public class BaggageSelectionSystem : GameSystem
             mySeq.OnComplete(() =>
             {
                 DOTween.Kill(component.transform);
-                //Extensions.BubbleUIUpdate(BubbleUIType.Player, game.playerComponent.AnchorPoint);
-
-                //Signals.Get<VibrationSignal>().Dispatch(HapticTypes.LightImpact);
             });
         }
     }

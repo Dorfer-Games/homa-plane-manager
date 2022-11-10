@@ -16,6 +16,7 @@ namespace Kuhpik
 
         public Vector3 Direction;
 
+        public GroundComponent Ground;
         public AirplaneComponent Airplane;
 
         public CharacterComponent Player;
@@ -25,6 +26,10 @@ namespace Kuhpik
         public List<PeopleData> PeoplePlatformList;
         public List<PeopleData> PeopleOnPlaneList;
         public List<PeopleData> PeoplePlaneList;
+
+
+
+
 
         // OLD
         [Header("--------------Player------------")]
