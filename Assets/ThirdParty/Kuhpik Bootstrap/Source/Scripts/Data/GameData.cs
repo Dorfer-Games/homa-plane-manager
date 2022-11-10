@@ -12,6 +12,8 @@ namespace Kuhpik
     [Serializable]
     public class GameData
     {
+        public List<FoodData> FoodList;
+
         public ControllerType CameraController;
 
         public Vector3 Direction;

@@ -14,6 +14,7 @@ public class CharacterComponent : MonoBehaviour
 
     [SerializeField, BoxGroup("Point")] Transform baggagePoint;
     [SerializeField, BoxGroup("Point")] Transform stackPoint;
+    [SerializeField, BoxGroup("Point")] Transform bubblePoint;
 
     public Rigidbody Rigidbody => rb;
     public Animator Animator => animator;
@@ -23,4 +24,5 @@ public class CharacterComponent : MonoBehaviour
     public Collider Collider => coll;
     public Transform BaggagePoint => baggagePoint;
     public Transform StackPoint => stackPoint;
+    public Transform BubblePoint => bubblePoint;
 }

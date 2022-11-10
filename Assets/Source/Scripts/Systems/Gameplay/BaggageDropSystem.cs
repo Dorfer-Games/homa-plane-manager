@@ -36,7 +36,7 @@ public class BaggageDropSystem : GameSystem
                             if (pointID < 0) game.PlayerItemList[j + 1].transform.parent = game.Player.StackPoint;
                             else game.PlayerItemList[j + 1].transform.parent = game.PlayerItemList[j - 1].StackPoint;
 
-                            game.PlayerItemList[i + 1].transform.DOLocalMove(Vector3.zero, 0.5f / game.PlayerItemList.Count);
+                            game.PlayerItemList[j + 1].transform.DOLocalMove(Vector3.zero, 0.5f / game.PlayerItemList.Count);
                         }
                         game.PlayerItemList.RemoveAt(j);
                         component.ItemList.Add(item);

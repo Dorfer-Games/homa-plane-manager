@@ -17,6 +17,18 @@ static class Extensions
                 if (parameter.name != animation) animator.SetBool(parameter.name, false);
         }
     }
+    public static void BubbleUIUpdate(BubbleUIType Type, Transform target, ItemType foodType = ItemType.None, int foodAmount = 0)
+    {
+        var bubbleData = new BubbleUITransferData()
+        {
+            Type = Type,
+            Target = target,
+            FoodType = foodType,
+            FoodAmount = foodAmount
+        };
+
+        Signals.Get<BubbleUISignal>().Dispatch(bubbleData);
+    }
     public static Sequence MoveItem(ItemComponent component, int count, float time, float scaleIncrease, float scaleDecrease, float rotate = 0f)
     {
         Transform item = component.transform;

@@ -11,4 +11,8 @@ public class PeopleData
 
     public int Stage;
     public Transform Target;
+
+    public bool IsFood;
+    public ItemType FoodType;
+    public int FoodAmount;
 }

@@ -2,6 +2,7 @@ using DG.Tweening;
 using Kuhpik;
 using NaughtyAttributes;
 using Supyrb;
+using System.Linq;
 using UnityEngine;
 
 public class AirplaneTakeoffSystem : GameSystem
