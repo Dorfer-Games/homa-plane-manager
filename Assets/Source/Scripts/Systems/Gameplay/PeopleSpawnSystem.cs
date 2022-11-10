@@ -17,6 +17,7 @@ public class PeopleSpawnSystem : GameSystem
         game.PeoplePlatformList = new List<PeopleData>();
         game.PeopleOnPlaneList = new List<PeopleData>();
         game.PeoplePlaneList = new List<PeopleData>();
+        game.PeopleFromPlaneList = new List<PeopleData>();
 
         PeopleCreate();
     }

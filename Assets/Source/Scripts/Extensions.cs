@@ -1,6 +1,7 @@
 using UnityEngine;
 using Supyrb;
 using DG.Tweening;
+using System.Collections.Generic;
 
 static class Extensions
 {
@@ -28,6 +29,18 @@ static class Extensions
         };
 
         Signals.Get<BubbleUISignal>().Dispatch(bubbleData);
+    }
+    public static void StackSorting(Transform point, List<ItemComponent> stack, int ID)
+    {
+        if (ID < stack.Count - 1)
+        {
+            int pointID = ID - 1;
+            if (pointID < 0) stack[ID + 1].transform.parent = point;
+            else stack[ID + 1].transform.parent = stack[ID - 1].StackPoint;
+
+            stack[ID + 1].transform.DOLocalMove(Vector3.zero, 0.5f / stack.Count);
+        }
+        stack.RemoveAt(ID);
     }
     public static Sequence MoveItem(ItemComponent component, int count, float time, float scaleIncrease, float scaleDecrease, float rotate = 0f)
     {

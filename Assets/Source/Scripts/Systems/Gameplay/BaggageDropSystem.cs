@@ -30,15 +30,7 @@ public class BaggageDropSystem : GameSystem
                         ItemComponent item = game.PlayerItemList[j];
                         item.transform.parent = component.PointList[component.ItemList.Count];
 
-                        if (j < game.PlayerItemList.Count - 1)
-                        {
-                            int pointID = j - 1;
-                            if (pointID < 0) game.PlayerItemList[j + 1].transform.parent = game.Player.StackPoint;
-                            else game.PlayerItemList[j + 1].transform.parent = game.PlayerItemList[j - 1].StackPoint;
-
-                            game.PlayerItemList[j + 1].transform.DOLocalMove(Vector3.zero, 0.5f / game.PlayerItemList.Count);
-                        }
-                        game.PlayerItemList.RemoveAt(j);
+                        Extensions.StackSorting(game.Player.StackPoint, game.PlayerItemList, j);
                         component.ItemList.Add(item);
 
                         Sequence mySeq = Extensions.MoveItem(item, Random.Range(10, 20), Random.Range(0.2f, 0.6f), 1f, 1f);

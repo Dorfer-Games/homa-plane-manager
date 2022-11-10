@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Baggage
   - Shelf
+  - Food
   layers:
   - Default
   - TransparentFX

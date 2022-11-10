@@ -12,6 +12,7 @@ public class FoodOrderSystem : GameSystem
     public override void OnInit()
     {
         Signals.Get<AirplaneStateSignal>().AddListener(AttentionCreate);
+        Signals.Get<OrderUpdateSignal>().AddListener(OrderCreate);
     }
     void AttentionCreate(AirplaneState state)
     {
@@ -28,12 +29,12 @@ public class FoodOrderSystem : GameSystem
             Extensions.BubbleUIUpdate(BubbleUIType.Attention, people.Component.BubblePoint);
         }
 
-        for (int i = 0; i < Mathf.Clamp(orderStartAmount, 0, OrderWait()); i++)
+        for (int i = 0; i < Mathf.Clamp(orderStartAmount, 0, HungryAmount()); i++)
             OrderCreate();
     }
     void OrderCreate()
     {
-        if (OrderWait() > 0)
+        if (HungryAmount() > 0)
         {
             PeopleData people = game.PeoplePlaneList[PeopleID()];
 
@@ -41,14 +42,34 @@ public class FoodOrderSystem : GameSystem
             Extensions.BubbleUIUpdate(BubbleUIType.Order, people.Component.BubblePoint, people.FoodType, people.FoodAmount);
 
             people.IsFood = true;
+        } else if (WaitAmount() <= 0)
+        {
+            foreach (var table in TableFoodComponent.Hashset.ToList())
+                table.TriggerZone.SetActive(false);
+
+            for (int i = game.PlayerItemList.Count - 1; i >= 0; i--)
+                Destroy(game.PlayerItemList[i].gameObject);
+
+            game.PlayerItemList.Clear();
+
+            Signals.Get<AirplaneStateSignal>().Dispatch(AirplaneState.Landing);
         }
     }
-    int OrderWait()
+    int HungryAmount()
     {
         int amount = 0;
 
         foreach (var people in game.PeoplePlaneList)
             if (!people.IsFood) amount++;
+
+        return amount;
+    }
+    int WaitAmount()
+    {
+        int amount = 0;
+
+        foreach (var people in game.PeoplePlaneList)
+            if (people.IsFood && people.FoodAmount > 0) amount++;
 
         return amount;
     }

@@ -2,6 +2,7 @@ using DG.Tweening;
 using Kuhpik;
 using NaughtyAttributes;
 using Supyrb;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AirplaneLadderSystem : GameSystem
@@ -22,17 +23,8 @@ public class AirplaneLadderSystem : GameSystem
         {
             zone.gameObject.SetActive(false);
 
-            if (!game.Airplane.IsLadderOpen)
-            {
-                game.Airplane.Ladder.DOLocalRotate(new Vector3(0f, 0f, game.Airplane.LadderRotate.y), ladderCooldown)
-                    .OnComplete(() =>
-                    {
-                        game.Airplane.DoorCollider.enabled = false;
-                        game.Airplane.SetLadderStatus(true);
-
-                        PeopleRun();
-                    });
-            } else PeopleRun();
+            if (!game.Airplane.IsLadderOpen) LadderOpen(game.PeoplePlatformList, game.PeopleOnPlaneList);
+            else PeopleRun(game.PeoplePlatformList, game.PeopleOnPlaneList);
         }
 
         if (zone.gameObject == game.Airplane.LadderRaiseZone)
@@ -50,16 +42,28 @@ public class AirplaneLadderSystem : GameSystem
 
                         Signals.Get<AirplaneStateSignal>().Dispatch(AirplaneState.Takeoff);
                     });
-            }
+            } else LadderOpen(game.PeoplePlaneList, game.PeopleFromPlaneList);
         }
     }
-    void PeopleRun()
+    void LadderOpen(List<PeopleData> from, List<PeopleData> to)
+    {
+        game.Airplane.Ladder.DOLocalRotate(new Vector3(0f, 0f, game.Airplane.LadderRotate.y), ladderCooldown)
+              .OnComplete(() =>
+              {
+                  game.Airplane.DoorCollider.enabled = false;
+                  game.Airplane.SetLadderStatus(true);
+
+                  PeopleRun(from, to);
+              });
+    }
+
+    void PeopleRun(List<PeopleData> from, List<PeopleData> to)
     {
         Signals.Get<NavigationUpdateSignal>().Dispatch();
 
-        foreach (var people in game.PeoplePlatformList)
-            game.PeopleOnPlaneList.Add(people);
+        foreach (var people in from)
+            to.Add(people);
 
-        game.PeoplePlatformList.Clear();
+        from.Clear();
     }
 }

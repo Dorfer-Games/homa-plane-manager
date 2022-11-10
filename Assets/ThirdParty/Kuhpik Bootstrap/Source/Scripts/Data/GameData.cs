@@ -28,7 +28,7 @@ namespace Kuhpik
         public List<PeopleData> PeoplePlatformList;
         public List<PeopleData> PeopleOnPlaneList;
         public List<PeopleData> PeoplePlaneList;
-
+        public List<PeopleData> PeopleFromPlaneList;
 
 
 
