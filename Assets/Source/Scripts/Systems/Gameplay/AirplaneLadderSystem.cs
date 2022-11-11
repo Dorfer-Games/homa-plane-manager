@@ -11,6 +11,7 @@ public class AirplaneLadderSystem : GameSystem
 
     public override void OnInit()
     {
+        Signals.Get<AirplaneStateSignal>().AddListener(LadderZoneCheck);
         Signals.Get<SignalFillZone>().AddListener(LadderAction);
 
         game.Airplane.LadderLowerZone.SetActive(true);
@@ -65,5 +66,11 @@ public class AirplaneLadderSystem : GameSystem
             to.Add(people);
 
         from.Clear();
+    }
+    void LadderZoneCheck(AirplaneState state)
+    {
+        if (state != AirplaneState.Idle) return;
+
+        game.Airplane.LadderLowerZone.SetActive(true);
     }
 }

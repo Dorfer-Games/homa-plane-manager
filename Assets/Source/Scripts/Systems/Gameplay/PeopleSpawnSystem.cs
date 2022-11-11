@@ -1,5 +1,6 @@
 using Kuhpik;
 using NaughtyAttributes;
+using Supyrb;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ public class PeopleSpawnSystem : GameSystem
     PlatformComponent component;
     public override void OnInit()
     {
+        Signals.Get<AirplaneStateSignal>().AddListener(PeopleCheck);
+
         component = FindObjectOfType<PlatformComponent>();
 
         game.PeoplePlatformList = new List<PeopleData>();
@@ -68,7 +71,15 @@ public class PeopleSpawnSystem : GameSystem
         int prefabID = Random.Range(0, baggagePrefabList.Count);
 
         Transform baggage = Instantiate(baggagePrefabList[prefabID], people.Component.BaggagePoint).transform;
-        baggage.parent = null;
+        baggage.parent = game.Ground.transform;
+
+        people.Baggage = baggage.GetComponent<ItemComponent>();
+    }
+    void PeopleCheck(AirplaneState state)
+    {
+        if (state != AirplaneState.Landing) return;
+
+        PeopleCreate();
     }
     Vector3 SpawnPosition()
     {

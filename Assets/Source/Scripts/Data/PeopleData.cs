@@ -8,6 +8,7 @@ public class PeopleData
     public CharacterComponent Component;
 
     public PlaceComponent Place;
+    public ItemComponent Baggage;
 
     public int Stage;
     public Transform Target;

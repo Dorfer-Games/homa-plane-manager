@@ -58,7 +58,19 @@ MonoBehaviour:
     SoundOn: 0
     MusicOn: 0
   <GameData>k__BackingField:
+    FoodList: []
+    CameraController: 0
+    Direction: {x: 0, y: 0, z: 0}
+    Ground: {fileID: 0}
+    Airplane: {fileID: 0}
     Player: {fileID: 0}
+    PlayerSpeed: 0
+    PlayerItemList: []
+    PeoplePlatformList: []
+    PeopleOnPlaneList: []
+    PeoplePlaneList: []
+    PeopleFromPlaneList: []
+    PlayerOld: {fileID: 0}
     Joystick: {x: 0, y: 0, z: 0}
     ControlBlock: 0
     IsVictory: 0

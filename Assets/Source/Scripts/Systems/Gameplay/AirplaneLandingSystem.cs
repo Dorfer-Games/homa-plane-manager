@@ -20,8 +20,6 @@ public class AirplaneLandingSystem : GameSystem
             .OnComplete(() =>
             {
                 game.Airplane.LadderRaiseZone.SetActive(true);
-
-                Signals.Get<AirplaneStateSignal>().Dispatch(AirplaneState.Idle);
             });
     }
 }
