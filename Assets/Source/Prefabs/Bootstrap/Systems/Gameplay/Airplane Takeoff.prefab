@@ -43,5 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db36a3045b3e4764085ac3355b414b55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  height: 30
+  length: {x: 200, y: 1100}
+  height: 300
   cooldown: 3

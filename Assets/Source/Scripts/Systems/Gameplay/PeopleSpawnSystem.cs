@@ -37,6 +37,7 @@ public class PeopleSpawnSystem : GameSystem
                 Component = people.GetComponent<CharacterComponent>(),
                 Place = place
             };
+            peopleData.Component.Agent.enabled = false;
 
             bool isSpawnPosition = false;
             while (!isSpawnPosition)

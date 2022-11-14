@@ -54,7 +54,10 @@ public class AirplaneLadderSystem : GameSystem
         Signals.Get<NavigationUpdateSignal>().Dispatch();
 
         foreach (var people in from)
+        {
+            people.Component.Agent.enabled = true;
             to.Add(people);
+        }
 
         from.Clear();
     }

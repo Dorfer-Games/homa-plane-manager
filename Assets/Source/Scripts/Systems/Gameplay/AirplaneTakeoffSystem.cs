@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class AirplaneTakeoffSystem : GameSystem
 {
+    [SerializeField, BoxGroup("Developer")] Vector2 length;
     [SerializeField, BoxGroup("Developer")] float height = 10f;
     [SerializeField, BoxGroup("Developer")] float cooldown = 3f;
 
@@ -41,11 +42,22 @@ public class AirplaneTakeoffSystem : GameSystem
             {
                 game.Airplane.SetLadderStatus(false);
 
-                game.Ground.transform.DOLocalMoveY(-height, cooldown)
+                float percent = length.x * 100f / length.y;
+                float cooldown_1 = cooldown * percent / 100f;
+                float cooldown_2 = cooldown - cooldown_1;
+
+                game.Ground.transform.DOLocalMoveZ(-length.x, cooldown_1)
                     .OnComplete(() =>
-                    {
-                        Signals.Get<AirplaneStateSignal>().Dispatch(AirplaneState.Flight);
-                    });
+                     {
+                         Vector3 position = new Vector3(game.Ground.transform.position.x, -height, -length.y);
+                         game.Ground.transform.DOLocalMove(position, cooldown_2)
+                            .OnComplete(() =>
+                            {
+                                Signals.Get<AirplaneStateSignal>().Dispatch(AirplaneState.Flight);
+                            });
+                     });
+
+                
             });
     }
 }

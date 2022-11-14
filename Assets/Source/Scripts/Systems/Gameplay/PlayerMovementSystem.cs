@@ -20,14 +20,14 @@ public class PlayerMovementSystem : GameSystem
             Move();
             Rotate();
 
-            //Extensions.PeopleAnimation(game.player.Animator, "isRun", game.playerSpeed);
+            Extensions.PeopleAnimation(game.Player.Animator, "isRun", game.PlayerSpeed);
         }
         else
         {
             game.Player.Rigidbody.velocity = new Vector3(0f, game.Player.Rigidbody.velocity.y, 0f);
             game.Player.Rigidbody.angularVelocity = Vector3.zero;
 
-            //Extensions.PeopleAnimation(game.player.Animator, "None");
+            Extensions.PeopleAnimation(game.Player.Animator, "None");
         }
     }
     void Move()
