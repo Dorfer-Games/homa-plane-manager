@@ -19,9 +19,16 @@ public class ControllerLoadingSystem : GameSystem
             default:
 
                 break;
+
             case ControllerType.Player:
                 component.VirtualCamera.LookAt = game.Player.transform;
                 component.VirtualCamera.Follow = game.Player.transform;
+
+                break;
+
+            case ControllerType.Airplane:
+                component.VirtualCamera.LookAt = game.Airplane.transform;
+                component.VirtualCamera.Follow = game.Airplane.transform;
 
                 break;
         }

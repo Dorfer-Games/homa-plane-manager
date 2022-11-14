@@ -25,14 +25,23 @@ public class AirplaneLandingSystem : GameSystem
         game.Ground.transform.position = position;
 
         position = new Vector3(game.Ground.transform.position.x, 0f, length.x);
-        game.Ground.transform.DOLocalMove(position, cooldown_2)
-           .OnComplete(() =>
-           {
-               game.Ground.transform.DOLocalMoveZ(0, cooldown_1)
-                    .OnComplete(() =>
-                    {
-                        game.Airplane.LadderRaiseZone.SetActive(true);
-                    });
-           });
+        game.Ground.transform.DOLocalMove(game.Ground.transform.localPosition, 3f)
+            .OnComplete(() =>
+            {
+                Signals.Get<ControllerChangeSignal>().Dispatch(ControllerType.Airplane);
+                game.Ground.gameObject.SetActive(true);
+
+                game.Ground.transform.DOLocalMove(position, cooldown_2)
+                   .OnComplete(() =>
+                   {
+                       game.Ground.transform.DOLocalMoveZ(0, cooldown_1).SetEase(Ease.OutExpo)
+                            .OnComplete(() =>
+                            {
+                                game.Airplane.LadderRaiseZone.SetActive(true);
+
+                                Signals.Get<ControllerChangeSignal>().Dispatch(ControllerType.Player);
+                            });
+                   });
+            });
     }
 }

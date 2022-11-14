@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   length: {x: 200, y: 1100}
-  cooldown: 3
+  cooldown: 5

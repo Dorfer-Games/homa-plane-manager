@@ -46,18 +46,20 @@ public class AirplaneTakeoffSystem : GameSystem
                 float cooldown_1 = cooldown * percent / 100f;
                 float cooldown_2 = cooldown - cooldown_1;
 
-                game.Ground.transform.DOLocalMoveZ(-length.x, cooldown_1)
+                game.Ground.transform.DOLocalMoveZ(-length.x, cooldown_1).SetEase(Ease.InExpo)
                     .OnComplete(() =>
-                     {
+                    {
                          Vector3 position = new Vector3(game.Ground.transform.position.x, -height, -length.y);
                          game.Ground.transform.DOLocalMove(position, cooldown_2)
                             .OnComplete(() =>
                             {
                                 Signals.Get<AirplaneStateSignal>().Dispatch(AirplaneState.Flight);
+                                Signals.Get<ControllerChangeSignal>().Dispatch(ControllerType.Player);
+                                game.Ground.gameObject.SetActive(false);
                             });
-                     });
-
-                
+                    });
             });
+
+        Signals.Get<ControllerChangeSignal>().Dispatch(ControllerType.Airplane);
     }
 }
