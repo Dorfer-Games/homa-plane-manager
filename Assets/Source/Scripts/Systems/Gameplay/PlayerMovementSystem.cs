@@ -20,15 +20,25 @@ public class PlayerMovementSystem : GameSystem
             Move();
             Rotate();
 
-            if (game.Player.transform.localPosition.y > 0.2f) Extensions.PeopleAnimation(game.Player.Animator, "isWalk", game.PlayerSpeed);
-            else Extensions.PeopleAnimation(game.Player.Animator, "isRun", game.PlayerSpeed);
+            if (game.PlayerItemList.Count <= 0)
+            {
+                game.PlayerSpeed = playerSpeedStart;
+
+                if (game.Player.transform.localPosition.y > 0.2f) Extensions.PeopleAnimation(game.Player.Animator, "isWalk", game.PlayerSpeed);
+                else Extensions.PeopleAnimation(game.Player.Animator, "isRun", game.PlayerSpeed);
+            } else
+            {
+                game.PlayerSpeed = playerSpeedStart / 1.5f;
+                Extensions.PeopleAnimation(game.Player.Animator, "isTakeRun", game.PlayerSpeed);
+            }
         }
         else
         {
             game.Player.Rigidbody.velocity = new Vector3(0f, game.Player.Rigidbody.velocity.y, 0f);
             game.Player.Rigidbody.angularVelocity = Vector3.zero;
 
-            Extensions.PeopleAnimation(game.Player.Animator, "None");
+            if (game.PlayerItemList.Count <= 0) Extensions.PeopleAnimation(game.Player.Animator, "None");
+            else Extensions.PeopleAnimation(game.Player.Animator, "isTake");
         }
     }
     void Move()
