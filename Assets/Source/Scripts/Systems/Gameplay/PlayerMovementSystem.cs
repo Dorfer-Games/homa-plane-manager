@@ -20,7 +20,8 @@ public class PlayerMovementSystem : GameSystem
             Move();
             Rotate();
 
-            Extensions.PeopleAnimation(game.Player.Animator, "isRun", game.PlayerSpeed);
+            if (game.Player.transform.localPosition.y > 0.2f) Extensions.PeopleAnimation(game.Player.Animator, "isWalk", game.PlayerSpeed);
+            else Extensions.PeopleAnimation(game.Player.Animator, "isRun", game.PlayerSpeed);
         }
         else
         {

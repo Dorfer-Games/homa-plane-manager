@@ -15710,7 +15710,7 @@ PrefabInstance:
     - target: {fileID: 6278018282363887576, guid: e46e3d5ea600975459a0f6e887c684fb,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6278018282363887576, guid: e46e3d5ea600975459a0f6e887c684fb,
         type: 3}
@@ -39238,6 +39238,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Airplane
+      objectReference: {fileID: 0}
+    - target: {fileID: 8035413541943917048, guid: e600d36f77ee5ee40b0ae6dfc49ba653,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e600d36f77ee5ee40b0ae6dfc49ba653, type: 3}
