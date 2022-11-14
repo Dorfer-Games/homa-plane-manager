@@ -54,12 +54,12 @@ public class PeopleFromPlaneSystem : GameSystem
                 if (distance - distanceOffset > stoppingDistance)
                 {
                     people.Component.Agent.SetDestination(people.Target.position);
-                    //Extensions.PeopleAnimation(assistant.Component.Animator, "isRun", assistant.Component.Agent.speed);
+                    Extensions.PeopleAnimation(people.Component.Animator, "isRun", people.Component.Agent.speed);
                 }
                 else
                 {
                     people.Component.Agent.ResetPath();
-                    //Extensions.PeopleAnimation(assistant.Component.Animator, "None");
+                    Extensions.PeopleAnimation(people.Component.Animator, "None");
 
                     people.Stage = 2;
                 }

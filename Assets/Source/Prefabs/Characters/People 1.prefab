@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 8395098820358826851}
-  animator: {fileID: 0}
+  animator: {fileID: 1620290475978201490}
   trigger: {fileID: 0}
   agent: {fileID: 2803565954951632956}
   speed: 3
@@ -262,7 +262,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3689906286689103951}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6387398665860409115}
@@ -632,6 +632,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 1e4245676bbff1f4a9da849d11c1df84,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: eaef172f991934d459bf6d527fbe83ca, type: 2}
     - target: {fileID: 6189242843578964874, guid: 1e4245676bbff1f4a9da849d11c1df84,
         type: 3}
       propertyPath: m_Layer
@@ -657,6 +662,12 @@ PrefabInstance:
 --- !u!4 &4655667921964286952 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1e4245676bbff1f4a9da849d11c1df84,
+    type: 3}
+  m_PrefabInstance: {fileID: 5122554526630519811}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1620290475978201490 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 1e4245676bbff1f4a9da849d11c1df84,
     type: 3}
   m_PrefabInstance: {fileID: 5122554526630519811}
   m_PrefabAsset: {fileID: 0}
