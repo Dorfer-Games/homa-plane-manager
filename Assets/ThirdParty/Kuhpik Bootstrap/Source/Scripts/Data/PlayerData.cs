@@ -12,7 +12,7 @@ namespace Kuhpik
     [Serializable]
     public class PlayerData
     {
-
+        public int MoneyAmount;
 
         // OLD
         public int SessionCounter;

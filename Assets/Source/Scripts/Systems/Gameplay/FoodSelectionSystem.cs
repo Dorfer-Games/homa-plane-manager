@@ -37,11 +37,10 @@ public class FoodSelectionSystem : GameSystem
         food.parent = game.Player.StackPoint;
         if (game.PlayerItemList.Count > 0) food.parent = game.PlayerItemList[game.PlayerItemList.Count - 1].StackPoint;
 
-
         ItemComponent component = food.GetComponent<ItemComponent>();
         game.PlayerItemList.Add(component);
 
-        Sequence mySeq = Extensions.MoveItem(component, game.PlayerItemList.Count, 0.25f, 1f, 1f);
+        Sequence mySeq = Extensions.MoveItem(component, game.PlayerItemList.Count, 0.25f, 1f, 1f, Vector3.zero);
         mySeq.OnComplete(() =>
         {
             DOTween.Kill(component.transform);

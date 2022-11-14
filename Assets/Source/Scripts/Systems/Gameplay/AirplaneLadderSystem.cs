@@ -14,6 +14,8 @@ public class AirplaneLadderSystem : GameSystem
         Signals.Get<AirplaneStateSignal>().AddListener(LadderZoneCheck);
         Signals.Get<SignalFillZone>().AddListener(LadderAction);
 
+        game.LadderCooldown = ladderCooldown;
+
         game.Airplane.LadderLowerZone.SetActive(true);
         game.Airplane.LadderRaiseZone.SetActive(false);
         game.Airplane.DoorCollider.enabled = true;
@@ -32,18 +34,7 @@ public class AirplaneLadderSystem : GameSystem
         {
             zone.gameObject.SetActive(false);
 
-            if (game.Airplane.IsLadderOpen)
-            {
-                game.Airplane.DoorCollider.enabled = true;
-
-                game.Airplane.Ladder.DOLocalRotate(new Vector3(0f, 0f, game.Airplane.LadderRotate.x), ladderCooldown)
-                    .OnComplete(() =>
-                    {
-                        game.Airplane.SetLadderStatus(false);
-
-                        Signals.Get<AirplaneStateSignal>().Dispatch(AirplaneState.Takeoff);
-                    });
-            } else LadderOpen(game.PeoplePlaneList, game.PeopleFromPlaneList);
+            if (!game.Airplane.IsLadderOpen) LadderOpen(game.PeoplePlaneList, game.PeopleFromPlaneList);
         }
     }
     void LadderOpen(List<PeopleData> from, List<PeopleData> to)

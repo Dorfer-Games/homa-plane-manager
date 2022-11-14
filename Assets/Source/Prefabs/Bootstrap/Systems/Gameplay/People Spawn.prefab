@@ -50,3 +50,5 @@ MonoBehaviour:
   baggagePrefabList:
   - {fileID: 4799766487045379382, guid: dcda643bbef9d1d4d83505ee54632380, type: 3}
   - {fileID: 4799766487045379382, guid: a90a75f321a3a384cb95207e0b7ff7e3, type: 3}
+  - {fileID: 4799766487045379382, guid: f3ea1248c222d7b46a7d7de2d72ea304, type: 3}
+  - {fileID: 4799766487045379382, guid: fc0185542ac53b349b5713c7c5197272, type: 3}

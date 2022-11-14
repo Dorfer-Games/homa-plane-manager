@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class FoodDropSystem : GameSystem
 {
+    [SerializeField, BoxGroup("Settings")] Vector2 paymentAmount;
+
     [SerializeField, BoxGroup("Developer")] [Tag] string dropTag;
 
     public override void OnInit()
@@ -39,7 +41,7 @@ public class FoodDropSystem : GameSystem
 
                 Extensions.StackSorting(game.Player.StackPoint, game.PlayerItemList, i);
 
-                Sequence mySeq = Extensions.MoveItem(item, Random.Range(10, 20), Random.Range(0.2f, 0.6f), 1f, 1f);
+                Sequence mySeq = Extensions.MoveItem(item, Random.Range(10, 20), Random.Range(0.2f, 0.6f), 1f, 1f, Vector3.zero);
                 mySeq.OnComplete(() =>
                 {
                     DOTween.Kill(item.transform);
@@ -51,6 +53,7 @@ public class FoodDropSystem : GameSystem
 
                 if (people.FoodAmount <= 0)
                 {
+                    Signals.Get<PaymentSignal>().Dispatch(people.Component.BubblePoint, Random.Range((int)paymentAmount.x, (int)paymentAmount.y));
                     Signals.Get<OrderUpdateSignal>().Dispatch();
 
                     break;

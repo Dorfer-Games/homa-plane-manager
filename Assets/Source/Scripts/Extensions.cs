@@ -2,6 +2,7 @@ using UnityEngine;
 using Supyrb;
 using DG.Tweening;
 using System.Collections.Generic;
+using System.Linq;
 
 static class Extensions
 {
@@ -42,7 +43,7 @@ static class Extensions
         }
         stack.RemoveAt(ID);
     }
-    public static Sequence MoveItem(ItemComponent component, int count, float time, float scaleIncrease, float scaleDecrease, float rotate = 0f)
+    public static Sequence MoveItem(ItemComponent component, int count, float time, float scaleIncrease, float scaleDecrease, Vector3 rotate)
     {
         Transform item = component.transform;
         Vector3 centerPos = MidPoint(item.localPosition, Vector3.zero);
@@ -51,7 +52,7 @@ static class Extensions
         mySeq.Append(item.DOLocalMove(new Vector3(centerPos.x, 0.25f * count, centerPos.z), time));
         mySeq.Join(item.DOScale(scaleIncrease, time));
         mySeq.Join(item.DOLocalRotate(Vector3.zero, time));
-        mySeq.Join(component.Model.DOLocalRotate(new Vector3(0f, rotate, 0f), time));
+        mySeq.Join(component.Model.DOLocalRotate(rotate, time));
         mySeq.Append(item.DOLocalMove(Vector3.zero, time));
         mySeq.Join(item.DOScale(scaleDecrease, time));
 

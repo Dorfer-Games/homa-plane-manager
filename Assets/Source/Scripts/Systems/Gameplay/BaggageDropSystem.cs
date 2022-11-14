@@ -33,13 +33,11 @@ public class BaggageDropSystem : GameSystem
                         Extensions.StackSorting(game.Player.StackPoint, game.PlayerItemList, j);
                         component.ItemList.Add(item);
 
-                        Sequence mySeq = Extensions.MoveItem(item, Random.Range(10, 20), Random.Range(0.2f, 0.6f), 1f, 1f);
+                        Sequence mySeq = Extensions.MoveItem(item, Random.Range(10, 20), Random.Range(0.2f, 0.6f), 1f, 1f, Vector3.zero);
                         mySeq.OnComplete(() =>
                         {
                             DOTween.Kill(item.transform);
                         });
-
-                        BaggageCheck();
 
                         break;
                     }
@@ -47,19 +45,5 @@ public class BaggageDropSystem : GameSystem
             }
             
         }
-    }
-    void BaggageCheck()
-    {
-        bool isReady = true;
-        foreach (var shelf in ShelfComponent.Hashset.ToList())
-        {
-            if (shelf.PointList.Count > shelf.ItemList.Count)
-            {
-                isReady = false;
-                break;
-            }
-        }
-
-        if (isReady) game.Airplane.LadderRaiseZone.SetActive(true);
     }
 }

@@ -43,4 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29578d3da016f3a4ca32ab99288cd029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  paymentAmount: {x: 3, y: 5}
   dropTag: Food
