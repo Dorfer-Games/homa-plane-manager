@@ -11,6 +11,7 @@ public class PeopleSpawnSystem : GameSystem
     [SerializeField, BoxGroup("Developer")] List<GameObject> baggagePrefabList;
 
     PlatformComponent component;
+    float borderOffset;
     public override void OnInit()
     {
         Signals.Get<AirplaneStateSignal>().AddListener(PeopleCheck);
@@ -44,7 +45,7 @@ public class PeopleSpawnSystem : GameSystem
                 };
                 peopleData.Component.Agent.enabled = false;
 
-                bool isSpawnPosition = false;
+                bool isSpawnPosition = false; borderOffset = 0;
                 while (!isSpawnPosition)
                 {
                     people.transform.localPosition = SpawnPosition();
@@ -62,6 +63,7 @@ public class PeopleSpawnSystem : GameSystem
                     }
 
                     if (isReady) isSpawnPosition = true;
+                    else borderOffset += 0.025f;
                 }
 
                 float rotateY = Random.Range(peopleRotate.x, peopleRotate.y);
@@ -90,8 +92,8 @@ public class PeopleSpawnSystem : GameSystem
     }
     Vector3 SpawnPosition()
     {
-        Vector3 position = new Vector3(Random.Range(component.BorderX.x, component.BorderX.y),
-                0f, Random.Range(component.BorderZ.x, component.BorderZ.y));
+        Vector3 position = new Vector3(Random.Range(component.BorderX.x - borderOffset, component.BorderX.y + borderOffset),
+                0f, Random.Range(component.BorderZ.x - borderOffset, component.BorderZ.y + borderOffset));
 
         return position;
     }

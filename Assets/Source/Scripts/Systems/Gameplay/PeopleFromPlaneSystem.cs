@@ -71,9 +71,6 @@ public class PeopleFromPlaneSystem : GameSystem
                 game.PeopleFromPlaneList.Remove(people);
                 Destroy(people.Transform.gameObject);
 
-                if (game.PeopleFromPlaneList.Count <= 0)
-                    Signals.Get<AirplaneStateSignal>().Dispatch(AirplaneState.Ready);
-
                 break;
         }
     }

@@ -22,12 +22,14 @@ namespace Kuhpik
 
         public AirplaneComponent Airplane;
         public float LadderCooldown;
+        public List<ItemComponent> BaggageList;
 
         public CharacterComponent Player;
         public float PlayerSpeed;
         public List<ItemComponent> PlayerItemList;
 
-        public List<ItemComponent> BaggageList;
+        public ConveyorComponent Conveyor;
+        public List<ItemComponent> ConveyorList;
 
         public List<PeopleData> PeoplePlatformList;
         public List<PeopleData> PeopleOnPlaneList;
