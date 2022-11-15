@@ -1,6 +1,9 @@
 using DG.Tweening;
 using Kuhpik;
+using MoreMountains.NiceVibrations;
 using NaughtyAttributes;
+using Supyrb;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -11,39 +14,41 @@ public class BaggageDropSystem : GameSystem
     public override void OnInit()
     {
         game.Player.Trigger.OnTriggerEnterEvent += TriggerEnterCheck;
+
+        game.BaggageList = new List<ItemComponent>();
     }
     void TriggerEnterCheck(Transform other, Transform original)
     {
-        if (other.CompareTag(shelfTag) && game.PlayerItemList.Count > 0)
+        if (other.CompareTag(shelfTag) && game.PlayerItemList.Count > 0 && game.PeoplePlatformList.Count <= 0)
         {
-            ShelfComponent component = other.GetComponentInParent<ShelfComponent>();
-
-            if (component.PointList.Count == component.ItemList.Count) return;
-
-            int count = component.PointList.Count - component.ItemList.Count;
-            for (int i = 0; i < count; i++)
+            for (int j = game.PlayerItemList.Count - 1; j >= 0; j--)
             {
-                for (int j = game.PlayerItemList.Count - 1; j >= 0; j--)
+                if (game.PlayerItemList[j].ItemType == ItemType.Baggage)
                 {
-                    if (game.PlayerItemList[j].ItemType == ItemType.Baggage)
+                    ItemComponent item = game.PlayerItemList[j];
+
+                    float moveTime = 0.5f;
+                    int pointID = game.BaggageList.Count;
+                    while (pointID > game.Airplane.BaggagePointList.Count - 1) pointID -= game.Airplane.BaggagePointList.Count;
+                    item.transform.parent = game.Airplane.BaggagePointList[pointID];
+
+                    int count = Mathf.FloorToInt(game.BaggageList.Count / game.Airplane.BaggagePointList.Count);
+                    Vector3 newRotate = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
+
+                    Sequence mySeq = DOTween.Sequence();
+                    mySeq.Append(item.transform.DOLocalMove(new Vector3(0f, item.StackPoint.localPosition.y * count, 0f), moveTime));
+                    mySeq.Join(item.transform.DOLocalRotate(newRotate, moveTime));
+                    mySeq.OnComplete(() =>
                     {
-                        ItemComponent item = game.PlayerItemList[j];
-                        item.transform.parent = component.PointList[component.ItemList.Count];
+                        DOTween.Kill(item.transform);
+                    });
 
-                        Extensions.StackSorting(game.Player.StackPoint, game.PlayerItemList, j);
-                        component.ItemList.Add(item);
+                    Extensions.StackSorting(game.Player.StackPoint, game.PlayerItemList, j);
+                    game.BaggageList.Add(item);
 
-                        Sequence mySeq = Extensions.MoveItem(item, Random.Range(10, 20), Random.Range(0.2f, 0.6f), 1f, 1f, Vector3.zero);
-                        mySeq.OnComplete(() =>
-                        {
-                            DOTween.Kill(item.transform);
-                        });
-
-                        break;
-                    }
+                    Signals.Get<VibrationSignal>().Dispatch(HapticTypes.LightImpact);
                 }
             }
-            
         }
     }
 }

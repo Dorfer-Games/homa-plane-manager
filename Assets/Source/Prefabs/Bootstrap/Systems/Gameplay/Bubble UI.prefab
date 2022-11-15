@@ -46,6 +46,7 @@ MonoBehaviour:
   bubblePrefabList:
   - {fileID: 1832148334032434150, guid: 2ba41baea7448124186653ffda9cfcd5, type: 3}
   - {fileID: 1832148334032434150, guid: 77c50ae1ebce6dc4184a4b76b494332e, type: 3}
+  - {fileID: 1832148334032434150, guid: 06df5c6e5eb095c4f9aa3b532ae40923, type: 3}
   speedPosition: 40
   adjustPosition: {x: 0, y: 0, z: 0}
   bubbleList: []

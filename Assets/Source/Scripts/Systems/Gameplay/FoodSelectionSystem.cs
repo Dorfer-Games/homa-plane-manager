@@ -1,5 +1,6 @@
 using DG.Tweening;
 using Kuhpik;
+using MoreMountains.NiceVibrations;
 using Supyrb;
 using System.Linq;
 using UnityEngine;
@@ -47,5 +48,7 @@ public class FoodSelectionSystem : GameSystem
 
             table.TriggerZone.SetActive(true);
         });
+
+        Signals.Get<VibrationSignal>().Dispatch(HapticTypes.LightImpact);
     }
 }

@@ -8,6 +8,7 @@ TagManager:
   - Shelf
   - Food
   - Money
+  - Unlock
   layers:
   - Default
   - TransparentFX

@@ -27,6 +27,8 @@ namespace Kuhpik
         public float PlayerSpeed;
         public List<ItemComponent> PlayerItemList;
 
+        public List<ItemComponent> BaggageList;
+
         public List<PeopleData> PeoplePlatformList;
         public List<PeopleData> PeopleOnPlaneList;
         public List<PeopleData> PeoplePlaneList;

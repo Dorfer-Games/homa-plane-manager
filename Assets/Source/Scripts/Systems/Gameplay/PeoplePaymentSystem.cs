@@ -22,7 +22,7 @@ public class PeoplePaymentSystem : GameSystem
             Transform money = Instantiate(moneyPrefab, game.Airplane.transform).transform;
             money.position = spawn.position;
 
-            Vector3 position = new Vector3(0f, 1.4f, money.localPosition.z + Random.Range(-offset, offset));
+            Vector3 position = new Vector3(PaymentPoint().localPosition.x, 1.4f, money.localPosition.z + Random.Range(-offset, offset));
             Vector3 centerPos = Extensions.MidPoint(money.localPosition, position);
 
             Sequence mySeq = DOTween.Sequence();
@@ -33,5 +33,21 @@ public class PeoplePaymentSystem : GameSystem
                 DOTween.Kill(money.transform);
             });
         }
+    }
+    Transform PaymentPoint()
+    {
+        float currentDistance = 99999;
+        Transform paymentPoint = game.Airplane.PaymentPointList[0];
+        foreach (Transform point in game.Airplane.PaymentPointList)
+        {
+            float distance = Vector3.Distance(point.position, game.Player.transform.position);
+            if (currentDistance > distance)
+            {
+                currentDistance = distance;
+                paymentPoint = point;
+            }
+        }
+
+        return paymentPoint;
     }
 }

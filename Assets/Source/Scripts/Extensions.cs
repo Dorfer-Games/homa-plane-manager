@@ -19,14 +19,14 @@ static class Extensions
                 if (parameter.name != animation) animator.SetBool(parameter.name, false);
         }
     }
-    public static void BubbleUIUpdate(BubbleUIType Type, Transform target, ItemType foodType = ItemType.None, int foodAmount = 0)
+    public static void BubbleUIUpdate(BubbleUIType Type, Transform target, int amount = 0, ItemType foodType = ItemType.None)
     {
         var bubbleData = new BubbleUITransferData()
         {
             Type = Type,
             Target = target,
             FoodType = foodType,
-            FoodAmount = foodAmount
+            Amount = amount
         };
 
         Signals.Get<BubbleUISignal>().Dispatch(bubbleData);

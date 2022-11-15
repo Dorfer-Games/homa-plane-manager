@@ -39,7 +39,7 @@ public class FoodOrderSystem : GameSystem
             PeopleData people = game.PeoplePlaneList[PeopleID()];
 
             Extensions.BubbleUIUpdate(BubbleUIType.Attention, people.Component.BubblePoint);
-            Extensions.BubbleUIUpdate(BubbleUIType.Order, people.Component.BubblePoint, people.FoodType, people.FoodAmount);
+            Extensions.BubbleUIUpdate(BubbleUIType.Order, people.Component.BubblePoint, people.FoodAmount, people.FoodType);
 
             people.IsFood = true;
         } else if (WaitAmount() <= 0)
@@ -53,6 +53,19 @@ public class FoodOrderSystem : GameSystem
             game.PlayerItemList.Clear();
 
             Signals.Get<AirplaneStateSignal>().Dispatch(AirplaneState.Landing);
+        }
+
+        ZoneUpdate();
+    }
+    void ZoneUpdate()
+    {
+        foreach (var place in game.Airplane.PlaceList)
+            place.Zone.SetActive(false);
+
+        foreach (var people in game.PeoplePlaneList)
+        {
+            if (people.IsFood && people.FoodAmount > 0)
+                people.PlaceBlock.Zone.SetActive(true);
         }
     }
     int HungryAmount()

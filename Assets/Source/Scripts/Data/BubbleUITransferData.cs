@@ -8,5 +8,5 @@ public class BubbleUITransferData
     public Transform Target;
 
     public ItemType FoodType;
-    public int FoodAmount;
+    public int Amount;
 }

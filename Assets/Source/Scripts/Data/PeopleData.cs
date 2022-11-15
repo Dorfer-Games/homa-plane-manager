@@ -7,6 +7,7 @@ public class PeopleData
     public Transform Transform;
     public CharacterComponent Component;
 
+    public PlaceBlockComponent PlaceBlock;
     public PlaceComponent Place;
     public ItemComponent Baggage;
 

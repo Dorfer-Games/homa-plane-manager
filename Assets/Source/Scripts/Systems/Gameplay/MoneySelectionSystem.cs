@@ -1,4 +1,5 @@
 using Kuhpik;
+using MoreMountains.NiceVibrations;
 using NaughtyAttributes;
 using Supyrb;
 using UnityEngine;
@@ -22,5 +23,7 @@ public class MoneySelectionSystem : GameSystem
     {
         Destroy(money.gameObject);
         Signals.Get<MoneyChangeSignal>().Dispatch(moneyAmount);
+
+        Signals.Get<VibrationSignal>().Dispatch(HapticTypes.LightImpact);
     }
 }

@@ -1,5 +1,6 @@
 using DG.Tweening;
 using Kuhpik;
+using MoreMountains.NiceVibrations;
 using NaughtyAttributes;
 using Supyrb;
 using UnityEngine;
@@ -49,7 +50,7 @@ public class FoodDropSystem : GameSystem
                 });
 
                 people.FoodAmount--;
-                Extensions.BubbleUIUpdate(BubbleUIType.Order, people.Component.BubblePoint, people.FoodType, people.FoodAmount);
+                Extensions.BubbleUIUpdate(BubbleUIType.Order, people.Component.BubblePoint, people.FoodAmount, people.FoodType);
 
                 if (people.FoodAmount <= 0)
                 {
@@ -58,6 +59,8 @@ public class FoodDropSystem : GameSystem
 
                     break;
                 }
+
+                Signals.Get<VibrationSignal>().Dispatch(HapticTypes.LightImpact);
             }
         }
     }

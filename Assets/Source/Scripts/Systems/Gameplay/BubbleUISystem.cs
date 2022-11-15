@@ -48,16 +48,27 @@ public class BubbleUISystem : GameSystemWithScreen<BubbleUIScreen>
                 else if (bubbleData != null) BubbleDestroy(bubbleData);
 
                 break;
+
             case BubbleUIType.Order:
-                if (bubbleData == null && data.FoodAmount <= 0) return;
+                if (bubbleData == null && data.Amount <= 0) return;
                 if (bubbleData == null) BubbleCreate(bubblePrefabList[1], data.Type, data.Target);
 
                 var foodData = game.FoodList.FirstOrDefault(x => x.Type == data.FoodType);
                 bubbleData.Component.ImageList[0].sprite = foodData.Icon;
 
-                bubbleData.Component.TextList[0].text = "x" + data.FoodAmount;
+                bubbleData.Component.TextList[0].text = "x" + data.Amount;
 
-                if (data.FoodAmount <= 0) BubbleDestroy(bubbleData);
+                if (data.Amount <= 0) BubbleDestroy(bubbleData);
+
+                break;
+
+            case BubbleUIType.Unlock:
+                if (bubbleData == null && data.Amount <= 0) return;
+                if (bubbleData == null) BubbleCreate(bubblePrefabList[2], data.Type, data.Target);
+
+                bubbleData.Component.TextList[0].text = data.Amount.ToString();
+
+                if (data.Amount <= 0) BubbleDestroy(bubbleData);
 
                 break;
         }

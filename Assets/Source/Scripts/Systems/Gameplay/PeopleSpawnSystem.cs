@@ -26,45 +26,51 @@ public class PeopleSpawnSystem : GameSystem
     }
     void PeopleCreate()
     {
-        foreach (var place in game.Airplane.PlaceList)
+        foreach (var block in game.Airplane.PlaceList)
         {
-            int prefabID = Random.Range(0, peoplePrefabList.Count);
-
-            GameObject people = Instantiate(peoplePrefabList[prefabID], component.transform);
-            var peopleData = new PeopleData()
+            foreach (var place in block.PlaceList)
             {
-                Transform = people.transform,
-                Component = people.GetComponent<CharacterComponent>(),
-                Place = place
-            };
-            peopleData.Component.Agent.enabled = false;
+                if (!place.gameObject.activeInHierarchy) continue;
 
-            bool isSpawnPosition = false;
-            while (!isSpawnPosition)
-            {
-                people.transform.localPosition = SpawnPosition();
+                int prefabID = Random.Range(0, peoplePrefabList.Count);
 
-                bool isReady = true;
-                foreach (var _people in game.PeoplePlatformList)
+                GameObject people = Instantiate(peoplePrefabList[prefabID], component.transform);
+                var peopleData = new PeopleData()
                 {
-                    float distance = Vector3.Distance(people.transform.localPosition, _people.Transform.localPosition);
+                    Transform = people.transform,
+                    Component = people.GetComponent<CharacterComponent>(),
+                    Place = place,
+                    PlaceBlock = place.GetComponentInParent<PlaceBlockComponent>()
+                };
+                peopleData.Component.Agent.enabled = false;
 
-                    if (distance < component.Distance)
+                bool isSpawnPosition = false;
+                while (!isSpawnPosition)
+                {
+                    people.transform.localPosition = SpawnPosition();
+
+                    bool isReady = true;
+                    foreach (var _people in game.PeoplePlatformList)
                     {
-                        isReady = false;
-                        break;
+                        float distance = Vector3.Distance(people.transform.localPosition, _people.Transform.localPosition);
+
+                        if (distance < component.Distance)
+                        {
+                            isReady = false;
+                            break;
+                        }
                     }
+
+                    if (isReady) isSpawnPosition = true;
                 }
 
-                if (isReady) isSpawnPosition = true;
+                float rotateY = Random.Range(peopleRotate.x, peopleRotate.y);
+                people.transform.Rotate(new Vector3(0f, rotateY, 0f));
+
+                game.PeoplePlatformList.Add(peopleData);
+
+                BaggageCreate(peopleData);
             }
-
-            float rotateY = Random.Range(peopleRotate.x, peopleRotate.y);
-            people.transform.Rotate(new Vector3(0f, rotateY, 0f));
-
-            game.PeoplePlatformList.Add(peopleData);
-
-            BaggageCreate(peopleData);
         }
     }
     void BaggageCreate(PeopleData people)

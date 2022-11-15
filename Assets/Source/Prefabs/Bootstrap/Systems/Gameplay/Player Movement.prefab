@@ -43,3 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eef965a9bd62e524db100c399f73c5f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSpeedStart: 8
+  playerSensitivity: 70

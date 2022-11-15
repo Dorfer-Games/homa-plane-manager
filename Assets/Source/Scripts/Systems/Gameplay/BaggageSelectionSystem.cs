@@ -1,6 +1,8 @@
 using DG.Tweening;
 using Kuhpik;
+using MoreMountains.NiceVibrations;
 using NaughtyAttributes;
+using Supyrb;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,6 +33,8 @@ public class BaggageSelectionSystem : GameSystem
             {
                 DOTween.Kill(component.transform);
             });
+
+            Signals.Get<VibrationSignal>().Dispatch(HapticTypes.LightImpact);
         }
     }
 }

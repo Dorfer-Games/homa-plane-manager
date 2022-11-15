@@ -1,5 +1,6 @@
 using DG.Tweening;
 using Kuhpik;
+using MoreMountains.NiceVibrations;
 using NaughtyAttributes;
 using Supyrb;
 using System.Collections.Generic;
@@ -28,6 +29,8 @@ public class AirplaneLadderSystem : GameSystem
 
             if (!game.Airplane.IsLadderOpen) LadderOpen(game.PeoplePlatformList, game.PeopleOnPlaneList);
             else PeopleRun(game.PeoplePlatformList, game.PeopleOnPlaneList);
+
+            Signals.Get<VibrationSignal>().Dispatch(HapticTypes.MediumImpact);
         }
 
         if (zone.gameObject == game.Airplane.LadderRaiseZone)
@@ -35,10 +38,14 @@ public class AirplaneLadderSystem : GameSystem
             zone.gameObject.SetActive(false);
 
             if (!game.Airplane.IsLadderOpen) LadderOpen(game.PeoplePlaneList, game.PeopleFromPlaneList);
+
+            Signals.Get<VibrationSignal>().Dispatch(HapticTypes.MediumImpact);
         }
     }
     void LadderOpen(List<PeopleData> from, List<PeopleData> to)
     {
+        game.Airplane.BaggageDoor.DOLocalRotate(new Vector3(0f, game.Airplane.BaggageDoorRotate.y, 0f), ladderCooldown);
+
         game.Airplane.Ladder.DOLocalRotate(new Vector3(0f, 0f, game.Airplane.LadderRotate.y), ladderCooldown)
               .OnComplete(() =>
               {
@@ -63,7 +70,7 @@ public class AirplaneLadderSystem : GameSystem
     }
     void LadderZoneCheck(AirplaneState state)
     {
-        if (state != AirplaneState.Idle) return;
+        if (state != AirplaneState.Ready) return;
 
         game.Airplane.LadderLowerZone.SetActive(true);
     }

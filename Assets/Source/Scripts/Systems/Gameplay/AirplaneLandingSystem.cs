@@ -39,6 +39,7 @@ public class AirplaneLandingSystem : GameSystem
                             {
                                 game.Airplane.LadderRaiseZone.SetActive(true);
 
+                                Signals.Get<AirplaneStateSignal>().Dispatch(AirplaneState.Idle);
                                 Signals.Get<ControllerChangeSignal>().Dispatch(ControllerType.Player);
                             });
                    });
