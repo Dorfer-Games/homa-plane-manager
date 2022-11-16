@@ -45,10 +45,9 @@ public class FoodSelectionSystem : GameSystem
         mySeq.OnComplete(() =>
         {
             DOTween.Kill(component.transform);
-
-            table.TriggerZone.SetActive(true);
         });
 
+        table.TriggerZone.SetActive(true);
         Signals.Get<VibrationSignal>().Dispatch(HapticTypes.LightImpact);
     }
 }

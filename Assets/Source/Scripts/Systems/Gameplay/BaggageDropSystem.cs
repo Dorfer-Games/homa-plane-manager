@@ -33,7 +33,7 @@ public class BaggageDropSystem : GameSystem
                     item.transform.parent = game.Airplane.BaggagePointList[pointID];
 
                     int count = Mathf.FloorToInt(game.BaggageList.Count / game.Airplane.BaggagePointList.Count);
-                    Vector3 newRotate = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
+                    Vector3 newRotate = new Vector3(Random.Range(-50f, 50f), Random.Range(-50f, 50f), 0f);
 
                     Sequence mySeq = DOTween.Sequence();
                     mySeq.Append(item.transform.DOLocalMove(new Vector3(0f, item.StackPoint.localPosition.y * (count / 3), 0f), moveTime));
