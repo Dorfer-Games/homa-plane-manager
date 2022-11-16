@@ -10,11 +10,13 @@ using UnityEngine;
 public class UnlockSystem : GameSystem
 {
     [SerializeField, BoxGroup("Settings")] float cooldown = 0.25f;
+    [SerializeField, BoxGroup("Settings")] float cooldownMoney = 0.2f;
 
     [SerializeField, BoxGroup("Developer")] [Tag] string unlockTag;
 
     float nextUpdate;
     UnlockComponent unlockComponent;
+    float nextMoney;
     public override void OnInit()
     {
         Signals.Get<AirplaneStateSignal>().AddListener(TriggerZoneActive);
@@ -51,7 +53,7 @@ public class UnlockSystem : GameSystem
         int price = unlockComponent.GetPrice() - amount;
 
         Signals.Get<MoneyChangeSignal>().Dispatch(-amount);
-        Extensions.BubbleUIUpdate(BubbleUIType.Unlock, unlockComponent.Zone.transform, price);
+        Extensions.BubbleUIUpdate(BubbleUIType.Unlock, unlockComponent.BubblePoint, price);
 
         unlockComponent.SetPrice(price);
         SaveInformation(unlockComponent.name, price);
@@ -69,6 +71,28 @@ public class UnlockSystem : GameSystem
         } else Signals.Get<VibrationSignal>().Dispatch(HapticTypes.LightImpact);
 
         nextUpdate = Time.time + cooldown / price;
+
+        //money gameobject
+        if (nextMoney <= Time.time)
+        {
+            Transform money = Instantiate(game.MoneyPrefab, game.Ground.transform).transform;
+            money.tag = "Untagged";
+
+            money.position = game.Player.StackPoint.position;
+            money.parent = unlockComponent.transform;
+
+            Vector3 centerPos = Extensions.MidPoint(money.localPosition, Vector3.zero);
+
+            Sequence mySeq = DOTween.Sequence();
+            mySeq.Append(money.DOLocalMove(new Vector3(centerPos.x, money.localPosition.y * 1.5f, centerPos.z), cooldownMoney * 2));
+            mySeq.Append(money.DOLocalMove(Vector3.zero, cooldownMoney * 2));
+            mySeq.OnComplete(() =>
+            {
+                Destroy(money.gameObject);
+            });
+
+            nextMoney = Time.time + cooldownMoney;
+        }
     }
     void UpdateInformation()
     {
@@ -83,7 +107,7 @@ public class UnlockSystem : GameSystem
 
                 if (unlockData != null) unlock.SetPrice(unlockData.Price);
 
-                if (unlock.GetPrice() > 0) Extensions.BubbleUIUpdate(BubbleUIType.Unlock, unlock.Zone.transform, unlock.GetPrice());
+                if (unlock.GetPrice() > 0) Extensions.BubbleUIUpdate(BubbleUIType.Unlock, unlock.BubblePoint, unlock.GetPrice());
                 else Unlock(unlock, false);
             }
         }

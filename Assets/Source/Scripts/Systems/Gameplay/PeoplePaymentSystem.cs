@@ -14,6 +14,8 @@ public class PeoplePaymentSystem : GameSystem
     public override void OnInit()
     {
         Signals.Get<PaymentSignal>().AddListener(Payment);
+
+        game.MoneyPrefab = moneyPrefab;
     }
     void Payment(Transform spawn, int amount)
     {
@@ -22,7 +24,7 @@ public class PeoplePaymentSystem : GameSystem
             Transform money = Instantiate(moneyPrefab, game.Airplane.transform).transform;
             money.position = spawn.position;
 
-            Vector3 position = new Vector3(PaymentPoint().localPosition.x, 1.4f, money.localPosition.z + Random.Range(-offset, offset));
+            Vector3 position = new Vector3(PaymentPoint().localPosition.x, 1.4f, money.localPosition.z + Random.Range(0, offset));
             Vector3 centerPos = Extensions.MidPoint(money.localPosition, position);
 
             Sequence mySeq = DOTween.Sequence();

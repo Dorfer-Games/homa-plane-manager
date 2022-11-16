@@ -88,7 +88,7 @@ MonoBehaviour:
   animator: {fileID: 531556975143571098}
   trigger: {fileID: 0}
   agent: {fileID: 2803565954951632956}
-  speed: 2
+  speed: 4
   coll: {fileID: 8183781466895415129}
   baggagePoint: {fileID: 1044870313181292671}
   stackPoint: {fileID: 0}

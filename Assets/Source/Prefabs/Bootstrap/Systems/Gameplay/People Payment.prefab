@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 0.25
-  offset: 3
+  offset: 5
   moneyPrefab: {fileID: 4799766487045379382, guid: 09ce631290face549b1938bec9e0da98,
     type: 3}

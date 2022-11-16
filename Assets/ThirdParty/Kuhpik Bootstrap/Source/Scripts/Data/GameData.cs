@@ -36,6 +36,7 @@ namespace Kuhpik
         public List<PeopleData> PeoplePlaneList;
         public List<PeopleData> PeopleFromPlaneList;
 
+        public GameObject MoneyPrefab;
 
 
 

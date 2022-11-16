@@ -461,6 +461,11 @@ PrefabInstance:
       propertyPath: m_text
       value: burger
       objectReference: {fileID: 0}
+    - target: {fileID: 5169533378268644643, guid: dc74a86ad2aab7c45a78c6ef980a7c03,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5187871152000446378, guid: dc74a86ad2aab7c45a78c6ef980a7c03,
         type: 3}
       propertyPath: m_Name

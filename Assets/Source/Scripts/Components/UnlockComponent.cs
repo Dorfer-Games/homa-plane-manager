@@ -10,8 +10,10 @@ public class UnlockComponent : MonoBehaviour
     [SerializeField, BoxGroup("Settings")] int price;
     [SerializeField, BoxGroup("Settings")] GameObject model;
 
+    [SerializeField, BoxGroup("Developer")] Transform bubblePoint;
     [SerializeField, BoxGroup("Developer")] TriggerZoneComponent zone;
 
+    public Transform BubblePoint => bubblePoint;
     public TriggerZoneComponent Zone => zone;
     public GameObject Model => model;
     public int GetOpeningNumber() => sequentialOpening;

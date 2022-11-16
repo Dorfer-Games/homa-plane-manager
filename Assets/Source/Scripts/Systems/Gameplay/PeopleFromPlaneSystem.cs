@@ -30,7 +30,7 @@ public class PeopleFromPlaneSystem : GameSystem
 
                 break;
             case 0:
-                people.Component.Agent.speed = people.Component.Speed * 2;
+                people.Component.Agent.speed = people.Component.Speed * 1.5f;
                 people.Component.Agent.stoppingDistance = stoppingDistance;
                 people.Target = component.PointList[Random.Range(0, component.PointList.Count)];
 

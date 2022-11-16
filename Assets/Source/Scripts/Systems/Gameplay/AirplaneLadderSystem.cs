@@ -19,6 +19,7 @@ public class AirplaneLadderSystem : GameSystem
 
         game.Airplane.LadderLowerZone.SetActive(true);
         game.Airplane.LadderRaiseZone.SetActive(false);
+        game.Airplane.BaggageZone.SetActive(false);
         game.Airplane.DoorCollider.enabled = true;
     }
     void LadderAction(FillZoneComponent zone)
@@ -26,6 +27,7 @@ public class AirplaneLadderSystem : GameSystem
         if (zone.gameObject == game.Airplane.LadderLowerZone)
         {
             zone.gameObject.SetActive(false);
+            game.Airplane.BaggageZone.SetActive(true);
 
             if (!game.Airplane.IsLadderOpen) LadderOpen(game.PeoplePlatformList, game.PeopleOnPlaneList);
             else PeopleRun(game.PeoplePlatformList, game.PeopleOnPlaneList);
@@ -44,13 +46,15 @@ public class AirplaneLadderSystem : GameSystem
     }
     void LadderOpen(List<PeopleData> from, List<PeopleData> to)
     {
-        game.Airplane.BaggageDoor.DOLocalRotate(new Vector3(0f, game.Airplane.BaggageDoorRotate.y, 0f), ladderCooldown);
+        game.Airplane.BaggageDoor.DOLocalRotate(new Vector3(0f, 0f, game.Airplane.BaggageDoorRotate.y), ladderCooldown);
 
         game.Airplane.Ladder.DOLocalRotate(new Vector3(0f, 0f, game.Airplane.LadderRotate.y), ladderCooldown)
               .OnComplete(() =>
               {
                   game.Airplane.DoorCollider.enabled = false;
                   game.Airplane.SetLadderStatus(true);
+
+                  game.Airplane.BaggageZone.SetActive(true);
 
                   PeopleRun(from, to);
               });
