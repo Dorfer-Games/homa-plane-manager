@@ -23,7 +23,7 @@ Material:
   m_Name: mat_Money
   m_Shader: {fileID: 4800000, guid: a2d82c711daf5c74a9e6040320440810, type: 3}
   m_ShaderKeywords: _GRAYSCALEFRESNEL_ON _GRAYSCALESPECULAR_ON _MAPPINGGRADIENT_OBJECT_SPACE
-    _MAPPINGTEXTURE_UV _SHOW_FRESNEL_ON _SHOW_SPECULAR_ON
+    _MAPPINGTEXTURE_UV _SHOW_FRESNEL_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -104,7 +104,7 @@ Material:
     - _EnvirLighting: 0
     - _EnvironmentReflections: 1
     - _FresnelExponent: 50
-    - _FresnelPower: 5.3
+    - _FresnelPower: 4.8
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -119,15 +119,15 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueOffset: 0
-    - _RampSmooth: 0.667
-    - _RampThreshold: 0.691
+    - _RampSmooth: 0.663
+    - _RampThreshold: 0.679
     - _ReceiveShadows: 1
-    - _Saturation: 1
+    - _Saturation: 1.193
     - _SaturationCompensation: 1
     - _Shin: 4.56
     - _Show_Fresnel: 1
     - _Show_Gradient: 0
-    - _Show_Specular: 1
+    - _Show_Specular: 0
     - _Smooth: 0.5
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
@@ -144,12 +144,12 @@ Material:
     - _Color1: {r: 0.34999996, g: 0.39999998, b: 0.45, a: 1}
     - _Color2: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FresnelColor: {r: 0.4419879, g: 0.5943396, b: 0.32800817, a: 1}
+    - _FresnelColor: {r: 0.24990378, g: 0.3490566, b: 0.1761748, a: 1}
     - _HColor: {r: 1, g: 1, b: 1, a: 1}
-    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
+    - _MainColor: {r: 0.8773585, g: 0.8773585, b: 0.8773585, a: 1}
     - _ShadowColor: {r: 0.16603634, g: 0.1981132, b: 0.16353685, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _SpecColors: {r: 0.38179314, g: 0.5188679, b: 0.21293165, a: 1}
+    - _SpecColors: {r: 0, g: 0, b: 0, a: 1}
     - _Vector: {r: 0, g: 0, b: 0, a: 0}
     - _VectorGradient: {r: 0, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -10,7 +10,7 @@ Material:
   m_Name: mat_palet_farming_2
   m_Shader: {fileID: 4800000, guid: a2d82c711daf5c74a9e6040320440810, type: 3}
   m_ShaderKeywords: _GRAYSCALEFRESNEL_ON _GRAYSCALESPECULAR_ON _MAPPINGGRADIENT_OBJECT_SPACE
-    _MAPPINGTEXTURE_UV
+    _MAPPINGTEXTURE_UV _SHOW_FRESNEL_ON _SHOW_SPECULAR_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -82,7 +82,7 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Contrast: 1.11
+    - _Contrast: 1.089
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
@@ -90,8 +90,8 @@ Material:
     - _DstBlend: 0
     - _EnvirLighting: 0
     - _EnvironmentReflections: 1
-    - _FresnelExponent: 2
-    - _FresnelPower: 3
+    - _FresnelExponent: 50
+    - _FresnelPower: 11.7
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossyReflections: 1
@@ -110,12 +110,12 @@ Material:
     - _RampSmooth: 1
     - _RampThreshold: 0.704
     - _ReceiveShadows: 1
-    - _Saturation: 1.1
+    - _Saturation: 1.197
     - _SaturationCompensation: 1
-    - _Shin: 3
-    - _Show_Fresnel: 0
+    - _Shin: 3.49
+    - _Show_Fresnel: 1
     - _Show_Gradient: 0
-    - _Show_Specular: 0
+    - _Show_Specular: 1
     - _Smooth: 0.5
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
@@ -126,19 +126,19 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _grayscaleFactor: 1
-    - _smoothSpec: 1.5
+    - _smoothSpec: 0.09
     m_Colors:
     - _BaseColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color1: {r: 0.35, g: 0.4, b: 0.45, a: 1}
     - _Color2: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FresnelColor: {r: 1, g: 1, b: 1, a: 1}
+    - _FresnelColor: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
     - _HColor: {r: 1, g: 1, b: 1, a: 1}
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _SpecColors: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecColors: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 1}
     - _Vector: {r: 0, g: 0, b: 0, a: 0}
     - _VectorGradient: {r: 0, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
