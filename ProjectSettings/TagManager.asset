@@ -9,6 +9,7 @@ TagManager:
   - Food
   - Money
   - Unlock
+  - Conveyor
   layers:
   - Default
   - TransparentFX

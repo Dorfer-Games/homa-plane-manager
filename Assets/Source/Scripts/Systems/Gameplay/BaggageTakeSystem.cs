@@ -25,7 +25,7 @@ public class BaggageTakeSystem : GameSystem
 
                 game.PlayerItemList.Add(item);
 
-                Sequence mySeq = Extensions.MoveItem(item, game.PlayerItemList.Count, 0.25f, 1f, 1f, new Vector3(0f, 90f, 0f));
+                Sequence mySeq = Extensions.MoveItem(item, game.PlayerItemList.Count, 0.3f, 1f, 1f, new Vector3(0f, 90f, 0f));
                 mySeq.OnComplete(() =>
                 {
                     DOTween.Kill(item.transform);

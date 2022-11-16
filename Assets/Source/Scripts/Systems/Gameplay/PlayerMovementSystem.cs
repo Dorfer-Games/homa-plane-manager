@@ -31,6 +31,9 @@ public class PlayerMovementSystem : GameSystem
                 game.PlayerSpeed = playerSpeedStart / 1.5f;
                 Extensions.PeopleAnimation(game.Player.Animator, "isTakeRun", game.PlayerSpeed);
             }
+
+            game.Player.Animator.transform.localPosition = Vector3.zero;
+            game.Player.Animator.transform.localEulerAngles = Vector3.zero;
         }
         else
         {

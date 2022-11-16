@@ -33,7 +33,7 @@ public class ConveyorDropSystem : GameSystem
 
                     Extensions.StackSorting(game.Player.StackPoint, game.PlayerItemList, i);
 
-                    Sequence mySeq = Extensions.MoveItem(item, game.ConveyorList.Count, 0.25f, 1f, 1f, Vector3.zero);
+                    Sequence mySeq = Extensions.MoveItem(item, Random.Range(5, 10), 0.3f, 1f, 1f, Vector3.zero);
                     mySeq.OnComplete(() =>
                     {
                         DOTween.Kill(item.transform);
