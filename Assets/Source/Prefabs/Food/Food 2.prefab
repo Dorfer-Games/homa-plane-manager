@@ -110,6 +110,7 @@ MonoBehaviour:
   itemType: 2
   model: {fileID: 4740106743855166851}
   stackPoint: {fileID: 541159373824415708}
+  conveyorPoint: {fileID: 0}
 --- !u!1 &8261717315233229566
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,17 +207,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b03e70dde758fa4489294a06b76b5d93,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.75
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b03e70dde758fa4489294a06b76b5d93,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.75
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b03e70dde758fa4489294a06b76b5d93,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.75
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b03e70dde758fa4489294a06b76b5d93,
         type: 3}
