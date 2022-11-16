@@ -111,6 +111,7 @@ MonoBehaviour:
   itemType: 1
   model: {fileID: 4740106743855166851}
   stackPoint: {fileID: 8074609506030530572}
+  conveyorPoint: {fileID: 0}
 --- !u!65 &5102084596898462047
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -240,7 +241,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e23cc969f8355f04e92d773e865b3530,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e23cc969f8355f04e92d773e865b3530,
         type: 3}
