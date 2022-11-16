@@ -51365,6 +51365,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: fx_CloudsDown
       objectReference: {fileID: 0}
+    - target: {fileID: 5780997914993695521, guid: 9352e5556be249844932917f518826c0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7564778171932724968, guid: 9352e5556be249844932917f518826c0,
         type: 3}
       propertyPath: m_RootOrder
