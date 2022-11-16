@@ -101,7 +101,12 @@ public class UnlockSystem : GameSystem
             float posirionY = model.position.y;
             model.position = new Vector3(model.position.x, posirionY + 3f, model.position.z);
             model.DOMoveY(posirionY, time).SetEase(Ease.OutBounce)
-                .OnComplete(() => Signals.Get<NavigationUpdateSignal>().Dispatch());
+                .OnComplete(() => 
+                {
+                    Signals.Get<NavigationUpdateSignal>().Dispatch(); 
+                });
+
+            Signals.Get<EffectSignal>().Dispatch(model, EffectType.PlaceOpen, Vector3.zero);
         }
         else Signals.Get<NavigationUpdateSignal>().Dispatch();
 

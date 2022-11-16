@@ -24,7 +24,7 @@ public class FoodDropSystem : GameSystem
             {
                 if (people.Place == place)
                 {
-                    if (people.IsFood && people.FoodAmount > 0) FoodDrop(people);
+                    if (people.IsFoodReady && people.FoodAmount > 0) FoodDrop(people);
 
                     break;
                 }
@@ -54,6 +54,11 @@ public class FoodDropSystem : GameSystem
 
                 if (people.FoodAmount <= 0)
                 {
+                    Vector3 effect = new Vector3(people.Component.BubblePoint.position.x,
+                        people.Component.BubblePoint.position.y + 1.5f,
+                        people.Component.BubblePoint.position.z);
+
+                    Signals.Get<EffectSignal>().Dispatch(null, EffectType.PeopleOrder, effect);
                     Signals.Get<PaymentSignal>().Dispatch(people.Component.BubblePoint, Random.Range((int)paymentAmount.x, (int)paymentAmount.y));
                     Signals.Get<OrderUpdateSignal>().Dispatch();
 

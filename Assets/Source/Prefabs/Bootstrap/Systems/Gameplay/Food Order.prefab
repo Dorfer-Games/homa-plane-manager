@@ -43,5 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2945ecde62c19d74096b935bcfcae826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orderCooldown: {x: 1, y: 3}
   orderStartAmount: 3
   foodAmount: {x: 1, y: 5}

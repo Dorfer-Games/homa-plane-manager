@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8310410182951993561
+--- !u!1 &6163114818838882149
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3666496677248035081}
-  - component: {fileID: 7162639964118831126}
+  - component: {fileID: 478358691066811689}
+  - component: {fileID: 8788207410118300586}
   m_Layer: 0
-  m_Name: Airplane Takeoff
+  m_Name: Effect Loading
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3666496677248035081
+--- !u!4 &478358691066811689
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8310410182951993561}
+  m_GameObject: {fileID: 6163114818838882149}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,18 +31,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7162639964118831126
+--- !u!114 &8788207410118300586
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8310410182951993561}
+  m_GameObject: {fileID: 6163114818838882149}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db36a3045b3e4764085ac3355b414b55, type: 3}
+  m_Script: {fileID: 11500000, guid: 6aa13a8e3a6e48e44ba2f8eb36c77aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  length: {x: 0, y: 1500}
-  height: 300
-  cooldown: 3
+  effectList:
+  - {fileID: 6777294037684431705, guid: b3d5e349d4be6854f9e5a35023a2966a, type: 3}
+  - {fileID: 2694907920699593549, guid: 050657f2c20af634e99bd0aab6ca70b7, type: 3}
+  emojiList:
+  - {fileID: 7315795271341686477, guid: eb4e3daeae975cb45a9e02d260906664, type: 3}
+  - {fileID: 1989996282486746665, guid: 1ed97968eb741be40b77ba5e1b06ac0b, type: 3}

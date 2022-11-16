@@ -15,6 +15,7 @@ public class PeopleData
     public Transform Target;
 
     public bool IsFood;
+    public bool IsFoodReady;
     public ItemType FoodType;
     public int FoodAmount;
 }

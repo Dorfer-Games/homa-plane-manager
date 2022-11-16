@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Kuhpik;
 using NaughtyAttributes;
 using Supyrb;
@@ -6,6 +7,8 @@ using UnityEngine;
 
 public class FoodOrderSystem : GameSystem
 {
+    [SerializeField, BoxGroup("Settings")] Vector2 orderCooldown;
+
     [SerializeField, BoxGroup("Developer")] int orderStartAmount;
     [SerializeField, BoxGroup("Developer")] Vector2 foodAmount;
 
@@ -37,11 +40,19 @@ public class FoodOrderSystem : GameSystem
         if (HungryAmount() > 0)
         {
             PeopleData people = game.PeoplePlaneList[PeopleID()];
-
-            Extensions.BubbleUIUpdate(BubbleUIType.Attention, people.Component.BubblePoint);
-            Extensions.BubbleUIUpdate(BubbleUIType.Order, people.Component.BubblePoint, people.FoodAmount, people.FoodType);
-
             people.IsFood = true;
+
+            float time = Random.Range(orderCooldown.x, orderCooldown.y);
+            people.Transform.DOScale(people.Transform.localScale, time)
+                .OnComplete(() =>
+                {
+                    people.IsFoodReady = true;
+
+                    ZoneUpdate();
+
+                    Extensions.BubbleUIUpdate(BubbleUIType.Attention, people.Component.BubblePoint);
+                    Extensions.BubbleUIUpdate(BubbleUIType.Order, people.Component.BubblePoint, people.FoodAmount, people.FoodType);
+                });
         } else if (WaitAmount() <= 0)
         {
             foreach (var table in TableFoodComponent.Hashset.ToList())
@@ -64,7 +75,7 @@ public class FoodOrderSystem : GameSystem
 
         foreach (var people in game.PeoplePlaneList)
         {
-            if (people.IsFood && people.FoodAmount > 0)
+            if (people.IsFoodReady && people.FoodAmount > 0)
                 people.PlaceBlock.Zone.SetActive(true);
         }
     }

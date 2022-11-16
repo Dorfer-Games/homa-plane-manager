@@ -22,8 +22,9 @@ public class MoneySelectionSystem : GameSystem
     void MoneySelection(Transform money)
     {
         Destroy(money.gameObject);
-        Signals.Get<MoneyChangeSignal>().Dispatch(moneyAmount);
 
+        Signals.Get<MoneyChangeSignal>().Dispatch(moneyAmount);
+        Signals.Get<EffectSignal>().Dispatch(money, EffectType.MoneyTake, Vector3.zero);
         Signals.Get<VibrationSignal>().Dispatch(HapticTypes.LightImpact);
     }
 }
