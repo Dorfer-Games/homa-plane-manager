@@ -32,42 +32,79 @@ public class FoodOrderSystem : GameSystem
             Extensions.BubbleUIUpdate(BubbleUIType.Attention, people.Component.BubblePoint);
         }
 
-        for (int i = 0; i < Mathf.Clamp(orderStartAmount, 0, HungryAmount()); i++)
-            OrderCreate();
+        if (player.TutorialOrder > 1)
+        {
+            for (int i = 0; i < Mathf.Clamp(orderStartAmount, 0, HungryAmount()); i++)
+                OrderCreate();
+        } else OrderCreate();
     }
     void OrderCreate()
     {
-        if (HungryAmount() > 0)
+        PeopleData people;
+        switch (player.TutorialOrder)
         {
-            PeopleData people = game.PeoplePlaneList[PeopleID()];
-            people.IsFood = true;
-
-            float time = Random.Range(orderCooldown.x, orderCooldown.y);
-            people.Transform.DOScale(people.Transform.localScale, time)
-                .OnComplete(() =>
+            default:
+                if (HungryAmount() > 0)
                 {
-                    people.IsFoodReady = true;
+                    people = game.PeoplePlaneList[PeopleID()];
+                    OrderActive(people);
+                }
+                else if (WaitAmount() <= 0)
+                {
+                    foreach (var table in TableFoodComponent.Hashset.ToList())
+                        table.TriggerZone.SetActive(false);
 
-                    ZoneUpdate();
+                    for (int i = game.PlayerItemList.Count - 1; i >= 0; i--)
+                        Destroy(game.PlayerItemList[i].gameObject);
 
-                    Extensions.BubbleUIUpdate(BubbleUIType.Attention, people.Component.BubblePoint);
-                    Extensions.BubbleUIUpdate(BubbleUIType.Order, people.Component.BubblePoint, people.FoodAmount, people.FoodType);
-                });
-        } else if (WaitAmount() <= 0)
-        {
-            foreach (var table in TableFoodComponent.Hashset.ToList())
-                table.TriggerZone.SetActive(false);
+                    game.PlayerItemList.Clear();
 
-            for (int i = game.PlayerItemList.Count - 1; i >= 0; i--)
-                Destroy(game.PlayerItemList[i].gameObject);
+                    Signals.Get<AirplaneStateSignal>().Dispatch(AirplaneState.Landing);
+                }
 
-            game.PlayerItemList.Clear();
+                ZoneUpdate();
 
-            Signals.Get<AirplaneStateSignal>().Dispatch(AirplaneState.Landing);
+                break;
+
+            case 0:
+                people = game.PeoplePlaneList[0];
+                people.FoodType = game.FoodList[0].Type;
+                people.FoodAmount = 1;
+
+                OrderActive(people);
+
+                player.TutorialOrder++;
+
+                break;
+            case 1:
+                people = game.PeoplePlaneList[1];
+                people.FoodType = game.FoodList[1].Type;
+                people.FoodAmount = 1;
+
+                OrderActive(people);
+
+                player.TutorialOrder++;
+
+                break;
         }
-
-        ZoneUpdate();
     }
+    void OrderActive(PeopleData people)
+    {
+        people.IsFood = true;
+
+        float time = Random.Range(orderCooldown.x, orderCooldown.y);
+        people.Transform.DOScale(people.Transform.localScale, time)
+            .OnComplete(() =>
+            {
+                people.IsFoodReady = true;
+
+                ZoneUpdate();
+
+                Extensions.BubbleUIUpdate(BubbleUIType.Attention, people.Component.BubblePoint);
+                Extensions.BubbleUIUpdate(BubbleUIType.Order, people.Component.BubblePoint, people.FoodAmount, people.FoodType);
+            });
+    }
+
     void ZoneUpdate()
     {
         foreach (var place in game.Airplane.PlaceList)

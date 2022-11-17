@@ -19,6 +19,7 @@ namespace Kuhpik
         public Vector3 Direction;
 
         public GroundComponent Ground;
+        public PlatformComponent Platform;
 
         public AirplaneComponent Airplane;
         public float LadderCooldown;

@@ -12,8 +12,11 @@ namespace Kuhpik
     [Serializable]
     public class PlayerData
     {
+        public int Tutorial;
+        public int TutorialOrder;
+
         public bool IsVibration;
-        public bool GameLaunch;
+        public bool IsGameLaunch;
 
         public int MoneyAmount;
 

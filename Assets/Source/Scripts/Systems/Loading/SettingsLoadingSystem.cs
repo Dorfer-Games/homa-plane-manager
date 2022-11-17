@@ -20,7 +20,7 @@ public class SettingsLoadingSystem : GameSystemWithScreen<SettingsUIScreen>
         screen.SettingsButton.onClick.AddListener(() => SettingsHide());
         screen.VibrationsButton.onClick.AddListener(() => VibrationsActive());
 
-        if (!player.GameLaunch) StartCoroutine(GameLaunch());
+        if (!player.IsGameLaunch) StartCoroutine(GameLaunch());
 
         SettingsHide();
         VibrationsUpdate();
@@ -75,7 +75,7 @@ public class SettingsLoadingSystem : GameSystemWithScreen<SettingsUIScreen>
     IEnumerator GameLaunch()
     {
         VibrationsActive();
-        player.GameLaunch = true;
+        player.IsGameLaunch = true;
 
         yield return new WaitForSeconds(1f);
 

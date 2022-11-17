@@ -10,13 +10,12 @@ public class PeopleSpawnSystem : GameSystem
     [SerializeField, BoxGroup("Developer")] List<GameObject> peoplePrefabList;
     [SerializeField, BoxGroup("Developer")] List<GameObject> baggagePrefabList;
 
-    PlatformComponent component;
     float borderOffset;
     public override void OnInit()
     {
         Signals.Get<AirplaneStateSignal>().AddListener(PeopleCheck);
 
-        component = FindObjectOfType<PlatformComponent>();
+        game.Platform = FindObjectOfType<PlatformComponent>();
 
         game.PeoplePlatformList = new List<PeopleData>();
         game.PeopleOnPlaneList = new List<PeopleData>();
@@ -35,7 +34,7 @@ public class PeopleSpawnSystem : GameSystem
 
                 int prefabID = Random.Range(0, peoplePrefabList.Count);
 
-                GameObject people = Instantiate(peoplePrefabList[prefabID], component.transform);
+                GameObject people = Instantiate(peoplePrefabList[prefabID], game.Platform.transform);
                 var peopleData = new PeopleData()
                 {
                     Transform = people.transform,
@@ -55,7 +54,7 @@ public class PeopleSpawnSystem : GameSystem
                     {
                         float distance = Vector3.Distance(people.transform.localPosition, _people.Transform.localPosition);
 
-                        if (distance < component.Distance)
+                        if (distance < game.Platform.Distance)
                         {
                             isReady = false;
                             break;
@@ -92,8 +91,8 @@ public class PeopleSpawnSystem : GameSystem
     }
     Vector3 SpawnPosition()
     {
-        Vector3 position = new Vector3(Random.Range(component.BorderX.x - borderOffset, component.BorderX.y + borderOffset),
-                0f, Random.Range(component.BorderZ.x - borderOffset, component.BorderZ.y + borderOffset));
+        Vector3 position = new Vector3(Random.Range(game.Platform.BorderX.x - borderOffset, game.Platform.BorderX.y + borderOffset),
+                0f, Random.Range(game.Platform.BorderZ.x - borderOffset, game.Platform.BorderZ.y + borderOffset));
 
         return position;
     }

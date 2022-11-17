@@ -857,6 +857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27fb264c377342c469729acb71d95550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zone: {fileID: 9203312533296762919}
   baggagePointList:
   - {fileID: 5074295669819313580}
   - {fileID: 4322525785014576541}

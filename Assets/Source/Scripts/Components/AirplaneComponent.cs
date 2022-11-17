@@ -15,6 +15,7 @@ public class AirplaneComponent : MonoBehaviour
     [SerializeField, BoxGroup("Developer")] List<PlaceBlockComponent> placeList;
     [SerializeField, BoxGroup("Developer")] List<Transform> baggagePointList;
     [SerializeField, BoxGroup("Developer")] List<Transform> paymentPointList;
+    [SerializeField, BoxGroup("Developer")] List<Transform> tutorialPointList;
 
     [SerializeField, BoxGroup("Debug"), ReadOnly] bool isLadderOpen;
 
@@ -29,6 +30,7 @@ public class AirplaneComponent : MonoBehaviour
     public Vector2 BaggageDoorRotate => baggageDoorRotate;
     public List<PlaceBlockComponent> PlaceList => placeList;
     public List<Transform> PaymentPointList => paymentPointList;
+    public List<Transform> TutorialPointList => tutorialPointList;
     public List<Transform> BaggagePointList => baggagePointList;
 
     public void SetLadderStatus(bool status)
