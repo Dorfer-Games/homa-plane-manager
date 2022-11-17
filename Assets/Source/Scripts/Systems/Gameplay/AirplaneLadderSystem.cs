@@ -1,4 +1,5 @@
 using DG.Tweening;
+using HomaGames.HomaBelly;
 using Kuhpik;
 using MoreMountains.NiceVibrations;
 using NaughtyAttributes;
@@ -33,6 +34,11 @@ public class AirplaneLadderSystem : GameSystem
             else PeopleRun(game.PeoplePlatformList, game.PeopleOnPlaneList);
 
             Signals.Get<VibrationSignal>().Dispatch(HapticTypes.MediumImpact);
+
+            //homa event
+            player.GameLevel++;
+            Bootstrap.Instance.SaveGame();
+            HomaBelly.Instance.TrackDesignEvent("level_" + player.GameLevel + "_started");
         }
 
         if (zone.gameObject == game.Airplane.LadderRaiseZone)
@@ -77,5 +83,7 @@ public class AirplaneLadderSystem : GameSystem
         if (state != AirplaneState.Ready) return;
 
         game.Airplane.LadderLowerZone.SetActive(true);
+
+        HomaBelly.Instance.TrackDesignEvent("level_" + player.GameLevel + "_completed");
     }
 }

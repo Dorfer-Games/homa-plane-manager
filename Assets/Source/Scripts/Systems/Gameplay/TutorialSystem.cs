@@ -1,5 +1,6 @@
 using Crystal;
 using DG.Tweening;
+using HomaGames.HomaBelly;
 using Kuhpik;
 using NaughtyAttributes;
 using System.Linq;
@@ -156,28 +157,17 @@ public class TutorialSystem : GameSystemWithScreen<GameplayUIScreen>
         player.Tutorial = number;
         Bootstrap.Instance.SaveGame();
 
-        /*
-        if (number == 1) HomaBelly.Instance.TrackDesignEvent("tutorial_step0_startPack");
-        if (number == 2) HomaBelly.Instance.TrackDesignEvent("tutorial_step1_conveyorOpen");
-        if (number == 3) HomaBelly.Instance.TrackDesignEvent("tutorial_step2_dozerOpen");
-        if (number == 4) HomaBelly.Instance.TrackDesignEvent("tutorial_step3_craneOpen");
-        if (number == 5) HomaBelly.Instance.TrackDesignEvent("tutorial_step4_dozerDrive");
-        if (number == 6) HomaBelly.Instance.TrackDesignEvent("tutorial_step5_figureDestroy");
-        if (number == 7) HomaBelly.Instance.TrackDesignEvent("tutorial_step6_conveyorDrop");
-        if (number == 8) HomaBelly.Instance.TrackDesignEvent("tutorial_step7_figureDestroy");
-        if (number == 9) HomaBelly.Instance.TrackDesignEvent("tutorial_step8_conveyorDrop");
-        if (number == 10) HomaBelly.Instance.TrackDesignEvent("tutorial_step9_craneDrive");
-        if (number == 11) HomaBelly.Instance.TrackDesignEvent("tutorial_step10_magnetTake");
-        if (number == 12) HomaBelly.Instance.TrackDesignEvent("tutorial_step11_craneDrive");
-        if (number == 13) HomaBelly.Instance.TrackDesignEvent("tutorial_step12_construction");
-        if (number == 14) HomaBelly.Instance.TrackDesignEvent("tutorial_step13_upgrade");
-        if (number == 15) HomaBelly.Instance.TrackDesignEvent("tutorial_step14_showConveyorUnlock");
-        if (number == 16)
+        if (number == 1) HomaBelly.Instance.TrackDesignEvent("tutorial_step" + number + "_airplaneOpen");
+        if (number == 2) HomaBelly.Instance.TrackDesignEvent("tutorial_step" + number + "_baggageLoad");
+        if (number == 3) HomaBelly.Instance.TrackDesignEvent("tutorial_step" + number + "_airplaneTakeoff");
+        if (number == 4) HomaBelly.Instance.TrackDesignEvent("tutorial_step" + number + "_passengerService");
+        if (number == 5) HomaBelly.Instance.TrackDesignEvent("tutorial_step" + number + "_airplaneLanding");
+        if (number == 6) HomaBelly.Instance.TrackDesignEvent("tutorial_step" + number + "_baggageUnload");
+        if (number == 7)
         {
-            HomaBelly.Instance.TrackDesignEvent("tutorial_step15_showAssistantUnlock");
+            HomaBelly.Instance.TrackDesignEvent("tutorial_step" + number + "_conveyorDrop");
             HomaBelly.Instance.TrackDesignEvent("tutorial_completed");
         }
-        */
     }
     void MoveArrow(Transform arrow)
     {

@@ -12,6 +12,8 @@ namespace Kuhpik
     [Serializable]
     public class PlayerData
     {
+        public int GameLevel;
+
         public int Tutorial;
         public int TutorialOrder;
 

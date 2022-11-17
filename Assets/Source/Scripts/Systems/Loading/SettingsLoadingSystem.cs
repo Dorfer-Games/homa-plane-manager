@@ -1,4 +1,5 @@
 using DG.Tweening;
+using HomaGames.HomaBelly;
 using Kuhpik;
 using MoreMountains.NiceVibrations;
 using NaughtyAttributes;
@@ -79,7 +80,7 @@ public class SettingsLoadingSystem : GameSystemWithScreen<SettingsUIScreen>
 
         yield return new WaitForSeconds(1f);
 
-        //HomaBelly.Instance.TrackDesignEvent("first_game_launch");
-        //HomaBelly.Instance.TrackDesignEvent("tutorial_started");
+        HomaBelly.Instance.TrackDesignEvent("first_game_launch");
+        HomaBelly.Instance.TrackDesignEvent("tutorial_started");
     }
 }

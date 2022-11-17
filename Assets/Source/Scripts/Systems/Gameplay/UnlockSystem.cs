@@ -1,4 +1,5 @@
 using DG.Tweening;
+using HomaGames.HomaBelly;
 using Kuhpik;
 using MoreMountains.NiceVibrations;
 using NaughtyAttributes;
@@ -68,6 +69,8 @@ public class UnlockSystem : GameSystem
             UpdateInformation();
 
             Signals.Get<VibrationSignal>().Dispatch(HapticTypes.RigidImpact);
+
+            HomaBelly.Instance.TrackDesignEvent(unlockComponent.name);
         } else Signals.Get<VibrationSignal>().Dispatch(HapticTypes.LightImpact);
 
         nextUpdate = Time.time + cooldown / price;

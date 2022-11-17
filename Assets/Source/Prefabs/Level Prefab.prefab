@@ -4189,7 +4189,7 @@ PrefabInstance:
     - target: {fileID: 2815133373159930604, guid: e5172397581ea2f49a3ea73604f374b9,
         type: 3}
       propertyPath: m_Name
-      value: Unlock Place 9
+      value: buy_seat_9
       objectReference: {fileID: 0}
     - target: {fileID: 3550265430909362925, guid: e5172397581ea2f49a3ea73604f374b9,
         type: 3}
@@ -16691,7 +16691,7 @@ PrefabInstance:
     - target: {fileID: 2815133373159930604, guid: e5172397581ea2f49a3ea73604f374b9,
         type: 3}
       propertyPath: m_Name
-      value: Unlock Place 10
+      value: buy_seat_10
       objectReference: {fileID: 0}
     - target: {fileID: 3550265430909362925, guid: e5172397581ea2f49a3ea73604f374b9,
         type: 3}
@@ -17759,7 +17759,7 @@ PrefabInstance:
     - target: {fileID: 2815133373159930604, guid: e5172397581ea2f49a3ea73604f374b9,
         type: 3}
       propertyPath: m_Name
-      value: Unlock Place 12
+      value: buy_seat_12
       objectReference: {fileID: 0}
     - target: {fileID: 3550265430909362925, guid: e5172397581ea2f49a3ea73604f374b9,
         type: 3}
@@ -21546,7 +21546,7 @@ PrefabInstance:
     - target: {fileID: 2815133373159930604, guid: e5172397581ea2f49a3ea73604f374b9,
         type: 3}
       propertyPath: m_Name
-      value: Unlock Place 3
+      value: 'buy_seat_3 '
       objectReference: {fileID: 0}
     - target: {fileID: 3550265430909362925, guid: e5172397581ea2f49a3ea73604f374b9,
         type: 3}
@@ -21809,7 +21809,7 @@ PrefabInstance:
     - target: {fileID: 2815133373159930604, guid: e5172397581ea2f49a3ea73604f374b9,
         type: 3}
       propertyPath: m_Name
-      value: Unlock Place 11
+      value: buy_seat_11
       objectReference: {fileID: 0}
     - target: {fileID: 3550265430909362925, guid: e5172397581ea2f49a3ea73604f374b9,
         type: 3}
@@ -25325,7 +25325,7 @@ PrefabInstance:
     - target: {fileID: 2815133373159930604, guid: e5172397581ea2f49a3ea73604f374b9,
         type: 3}
       propertyPath: m_Name
-      value: Unlock Place 5
+      value: buy_seat_5
       objectReference: {fileID: 0}
     - target: {fileID: 3550265430909362925, guid: e5172397581ea2f49a3ea73604f374b9,
         type: 3}
@@ -38948,7 +38948,7 @@ PrefabInstance:
     - target: {fileID: 2815133373159930604, guid: e5172397581ea2f49a3ea73604f374b9,
         type: 3}
       propertyPath: m_Name
-      value: Unlock Place 8
+      value: buy_seat_8
       objectReference: {fileID: 0}
     - target: {fileID: 3550265430909362925, guid: e5172397581ea2f49a3ea73604f374b9,
         type: 3}
@@ -46766,7 +46766,7 @@ PrefabInstance:
     - target: {fileID: 2815133373159930604, guid: e5172397581ea2f49a3ea73604f374b9,
         type: 3}
       propertyPath: m_Name
-      value: Unlock Place 4
+      value: buy_seat_4
       objectReference: {fileID: 0}
     - target: {fileID: 3550265430909362925, guid: e5172397581ea2f49a3ea73604f374b9,
         type: 3}
@@ -47764,7 +47764,7 @@ PrefabInstance:
     - target: {fileID: 2815133373159930604, guid: e5172397581ea2f49a3ea73604f374b9,
         type: 3}
       propertyPath: m_Name
-      value: Unlock Place 7
+      value: buy_seat_7
       objectReference: {fileID: 0}
     - target: {fileID: 3550265430909362925, guid: e5172397581ea2f49a3ea73604f374b9,
         type: 3}
@@ -50351,7 +50351,7 @@ PrefabInstance:
     - target: {fileID: 2815133373159930604, guid: e5172397581ea2f49a3ea73604f374b9,
         type: 3}
       propertyPath: m_Name
-      value: Unlock Place 6
+      value: buy_seat_6
       objectReference: {fileID: 0}
     - target: {fileID: 3550265430909362925, guid: e5172397581ea2f49a3ea73604f374b9,
         type: 3}
