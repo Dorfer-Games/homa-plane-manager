@@ -77,6 +77,7 @@ public class SettingsLoadingSystem : GameSystemWithScreen<SettingsUIScreen>
     {
         VibrationsActive();
         player.IsGameLaunch = true;
+        player.GameLevel = 1;
 
         yield return new WaitForSeconds(1f);
 

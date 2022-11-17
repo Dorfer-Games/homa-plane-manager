@@ -36,8 +36,6 @@ public class AirplaneLadderSystem : GameSystem
             Signals.Get<VibrationSignal>().Dispatch(HapticTypes.MediumImpact);
 
             //homa event
-            player.GameLevel++;
-            Bootstrap.Instance.SaveGame();
             HomaBelly.Instance.TrackDesignEvent("level_" + player.GameLevel + "_started");
         }
 
@@ -84,6 +82,9 @@ public class AirplaneLadderSystem : GameSystem
 
         game.Airplane.LadderLowerZone.SetActive(true);
 
+        //homa event
         HomaBelly.Instance.TrackDesignEvent("level_" + player.GameLevel + "_completed");
+        player.GameLevel++;
+        Bootstrap.Instance.SaveGame();
     }
 }

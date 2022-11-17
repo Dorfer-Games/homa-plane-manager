@@ -3,6 +3,7 @@ using DG.Tweening;
 using HomaGames.HomaBelly;
 using Kuhpik;
 using NaughtyAttributes;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -18,10 +19,15 @@ public class TutorialSystem : GameSystemWithScreen<GameplayUIScreen>
     GameObject pointer;
     bool isHorizontal;
     Vector2 tweeningVertical;
+    List<ItemComponent> baggageList;
     public override void OnInit()
     {
         safeArea = screen.GetComponentInParent<SafeArea>();
         rect = safeArea.GetSafeArea();
+
+        baggageList = new List<ItemComponent>();
+        foreach (var people in game.PeoplePlatformList)
+            baggageList.Add(people.Baggage);
     }
     public override void OnUpdate()
     {
@@ -52,7 +58,8 @@ public class TutorialSystem : GameSystemWithScreen<GameplayUIScreen>
 
                 if (game.Airplane.LadderLowerZone.gameObject.activeSelf) return;
 
-                if (game.PlayerItemList.Count <= 0) target = game.Platform.transform;
+                Transform baggage = BaggageCheck();
+                if (baggage != null) target = baggage;
                 else target = game.Airplane.BaggageZone.transform;
 
                 if (game.BaggageList.Count >= game.PeoplePlaneList.Count && game.PeopleOnPlaneList.Count <= 0 && game.BaggageList.Count > 0)
@@ -81,7 +88,7 @@ public class TutorialSystem : GameSystemWithScreen<GameplayUIScreen>
                 {
                     if (IsPlayerItem()) 
                     {
-                        tweeningVertical = new Vector2(6f, 8f);
+                        tweeningVertical = new Vector2(8f, 10f);
 
                         target = PeopleCheck(); 
                     }
@@ -109,7 +116,8 @@ public class TutorialSystem : GameSystemWithScreen<GameplayUIScreen>
                     || game.Airplane.LadderLowerZone.gameObject.activeSelf 
                     || game.PeoplePlatformList.Count <= 0) return;
 
-                target = game.Airplane.BaggageZone.transform;
+                if (game.Player.transform.position.y > 1.8f) target = game.Airplane.TutorialPointList[1];
+                else target = game.Airplane.BaggageZone.transform;
 
                 if (game.BaggageList.Count <= 0) SaveTutorial(6);
 
@@ -185,6 +193,24 @@ public class TutorialSystem : GameSystemWithScreen<GameplayUIScreen>
             DOTween.Kill(pointer);
             MoveArrow(arrow);
         });
+    }
+    Transform BaggageCheck()
+    {
+        Transform baggage = null;
+        float currentDistance = 99999;
+        foreach (var item in baggageList)
+        {
+            if (!game.PlayerItemList.Contains(item) && !game.BaggageList.Contains(item))
+            {
+                float distance = Vector3.Distance(item.transform.position, game.Player.transform.position);
+                if (currentDistance > distance)
+                {
+                    currentDistance = distance;
+                    baggage = item.transform;
+                }
+            }
+        }
+        return baggage;
     }
     Transform PeopleCheck()
     {
