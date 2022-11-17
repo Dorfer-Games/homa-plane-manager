@@ -188,7 +188,7 @@ public class TutorialSystem : GameSystemWithScreen<GameplayUIScreen>
     }
     Transform PeopleCheck()
     {
-        return game.PeoplePlaneList[player.TutorialOrder - 1].PlaceBlock.transform;
+        return game.PeoplePlaneList[Mathf.Clamp(player.TutorialOrder - 1, 0, game.PeoplePlaneList.Count)].PlaceBlock.transform;
     }
     Transform TableCheck()
     {
@@ -199,11 +199,11 @@ public class TutorialSystem : GameSystemWithScreen<GameplayUIScreen>
     }
     ItemType OrderType()
     {
-        return game.PeoplePlaneList[player.TutorialOrder - 1].FoodType;
+        return game.PeoplePlaneList[Mathf.Clamp(player.TutorialOrder - 1, 0, game.PeoplePlaneList.Count)].FoodType;
     }
     bool IsOrder()
     {
-        return game.PeoplePlaneList[player.TutorialOrder - 1].IsFoodReady;
+        return game.PeoplePlaneList[Mathf.Clamp(player.TutorialOrder - 1, 0, game.PeoplePlaneList.Count)].IsFoodReady;
     }
     bool IsPlayerItem()
     {

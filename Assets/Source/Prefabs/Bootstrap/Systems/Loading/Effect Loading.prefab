@@ -46,6 +46,7 @@ MonoBehaviour:
   effectList:
   - {fileID: 6777294037684431705, guid: b3d5e349d4be6854f9e5a35023a2966a, type: 3}
   - {fileID: 2694907920699593549, guid: 050657f2c20af634e99bd0aab6ca70b7, type: 3}
+  - {fileID: 7099565082263189619, guid: a24fe29e2acc7f34a8a32dedacc2000f, type: 3}
   emojiList:
   - {fileID: 173990, guid: 78d558b16e5369f4fbdd6f9a8c8c92c1, type: 3}
   - {fileID: 108838, guid: c08a051f414d3404b982716325ef1503, type: 3}

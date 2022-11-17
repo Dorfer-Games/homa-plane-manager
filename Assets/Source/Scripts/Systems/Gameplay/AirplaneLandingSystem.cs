@@ -29,6 +29,7 @@ public class AirplaneLandingSystem : GameSystem
             .OnComplete(() =>
             {
                 Signals.Get<ControllerChangeSignal>().Dispatch(ControllerType.Airplane);
+                Signals.Get<EffectSignal>().Dispatch(Camera.main.transform, EffectType.Camera, new Vector3(cooldown / 1.5f, 0f, 0f));
                 game.Ground.gameObject.SetActive(true);
 
                 game.Ground.transform.DOLocalMove(position, cooldown_2)

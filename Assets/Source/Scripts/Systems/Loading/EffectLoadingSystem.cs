@@ -46,6 +46,12 @@ public class EffectLoadingSystem : GameSystem
                 Destroy(effect, 1f);
 
                 break;
+
+            case EffectType.Camera:
+                effect = Instantiate(effectList[2], spawn);
+                Destroy(effect, position.x);
+
+                break;
         }
     }
 }
