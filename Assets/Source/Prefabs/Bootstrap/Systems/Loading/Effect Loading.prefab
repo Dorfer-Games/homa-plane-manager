@@ -47,5 +47,11 @@ MonoBehaviour:
   - {fileID: 6777294037684431705, guid: b3d5e349d4be6854f9e5a35023a2966a, type: 3}
   - {fileID: 2694907920699593549, guid: 050657f2c20af634e99bd0aab6ca70b7, type: 3}
   emojiList:
-  - {fileID: 7315795271341686477, guid: eb4e3daeae975cb45a9e02d260906664, type: 3}
-  - {fileID: 1989996282486746665, guid: 1ed97968eb741be40b77ba5e1b06ac0b, type: 3}
+  - {fileID: 173990, guid: 78d558b16e5369f4fbdd6f9a8c8c92c1, type: 3}
+  - {fileID: 108838, guid: c08a051f414d3404b982716325ef1503, type: 3}
+  - {fileID: 1089177414158914, guid: 05d2e8793ebfb214692486b1f51c805e, type: 3}
+  - {fileID: 180048, guid: cace79c171f0b974eb6fc2cbbaf38ea8, type: 3}
+  - {fileID: 1550143868354262, guid: 6dcf30316d3281d4baf5ebd7ff33880c, type: 3}
+  - {fileID: 1392604035708060, guid: b21ec9b8b796a1047983c2e3a9c5b099, type: 3}
+  - {fileID: 169426, guid: 15f161ae227b9284e938b17d25b6cb2e, type: 3}
+  - {fileID: 1386007376782350, guid: c48afd2e2b068cd49bbf3af3d610e4ce, type: 3}
