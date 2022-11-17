@@ -3,7 +3,7 @@ name: Android build
 on: [push]
 
 env:
-  channel: 'C0494B72M8A'
+  channel: 'C022RAH0K6X'
   token: 'xoxb-1482890844194-2290431801809-AgX97RmFIcbMM6cyrBoSIU5q'
   keystore: 'dorfer.keystore'
   keystorepass: '4afW7SwZjsN&kKtXe7KwS%Ye'
