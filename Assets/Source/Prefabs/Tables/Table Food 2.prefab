@@ -1062,6 +1062,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Table Trigger
       objectReference: {fileID: 0}
+    - target: {fileID: 6618101848499720829, guid: dc74a86ad2aab7c45a78c6ef980a7c03,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618101848499720829, guid: dc74a86ad2aab7c45a78c6ef980a7c03,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6639585904591096764, guid: dc74a86ad2aab7c45a78c6ef980a7c03,
         type: 3}
       propertyPath: m_RootOrder
@@ -1140,7 +1150,12 @@ PrefabInstance:
     - target: {fileID: 9024539827162676698, guid: dc74a86ad2aab7c45a78c6ef980a7c03,
         type: 3}
       propertyPath: time
-      value: 0.3
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9024539827162676698, guid: dc74a86ad2aab7c45a78c6ef980a7c03,
+        type: 3}
+      propertyPath: value
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc74a86ad2aab7c45a78c6ef980a7c03, type: 3}

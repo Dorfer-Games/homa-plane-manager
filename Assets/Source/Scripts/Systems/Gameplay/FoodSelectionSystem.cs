@@ -1,12 +1,15 @@
 using DG.Tweening;
 using Kuhpik;
 using MoreMountains.NiceVibrations;
+using NaughtyAttributes;
 using Supyrb;
 using System.Linq;
 using UnityEngine;
 
 public class FoodSelectionSystem : GameSystem
 {
+    [SerializeField, BoxGroup("Settings")] int foodMax = 5;
+
     public override void OnInit()
     {
         Signals.Get<SignalFillZone>().AddListener(FoodCheck);
@@ -20,7 +23,7 @@ public class FoodSelectionSystem : GameSystem
         {
             if (zone.gameObject == table.TriggerZone)
             {
-                FoodSelection(table);
+                if (isSelection(table.ItemType)) FoodSelection(table);
 
                 break;
             }
@@ -49,5 +52,14 @@ public class FoodSelectionSystem : GameSystem
 
         table.TriggerZone.SetActive(true);
         Signals.Get<VibrationSignal>().Dispatch(HapticTypes.LightImpact);
+    }
+    bool isSelection(ItemType type)
+    {
+        int foodAmount = 0;
+        foreach (var item in game.PlayerItemList)
+            if (item.ItemType == type) foodAmount++;
+
+        if (foodAmount >= foodMax) return false;
+        else return true;
     }
 }
