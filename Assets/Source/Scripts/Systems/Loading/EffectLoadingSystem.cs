@@ -29,6 +29,11 @@ public class EffectLoadingSystem : GameSystem
                 effect.transform.position = newPosition;
                 Destroy(effect, 1f);
 
+                newPosition = new Vector3(spawn.position.x, spawn.position.y - 1.5f, spawn.position.z);
+                effect = Instantiate(effectList[3]);
+                effect.transform.position = newPosition;
+                Destroy(effect, 1f);
+
                 break;
 
             case EffectType.MoneyTake:

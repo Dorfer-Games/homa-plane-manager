@@ -50,7 +50,17 @@ public class AirplaneLadderSystem : GameSystem
     }
     void LadderOpen(List<PeopleData> from, List<PeopleData> to)
     {
-        game.Airplane.BaggageDoor.DOLocalRotate(new Vector3(0f, 0f, game.Airplane.BaggageDoorRotate.y), ladderCooldown);
+        game.Airplane.BaggageDoor.DOLocalRotate(new Vector3(0f, 0f, game.Airplane.BaggageDoorRotate.y), ladderCooldown)
+            .OnComplete(() =>
+            {
+                foreach (var item in game.BaggageList)
+                {
+                    Vector3 newRotate = new Vector3(Random.Range(-50f, 50f), Random.Range(-50f, 50f), 0f);
+                    item.transform.DOLocalRotate(newRotate, 0f);
+
+                    item.Model.gameObject.SetActive(true);
+                }  
+            });
 
         game.Airplane.Ladder.DOLocalRotate(new Vector3(0f, 0f, game.Airplane.LadderRotate.y), ladderCooldown)
               .OnComplete(() =>

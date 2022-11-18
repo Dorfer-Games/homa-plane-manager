@@ -33,11 +33,12 @@ public class BaggageDropSystem : GameSystem
                     item.transform.parent = game.Airplane.BaggagePointList[pointID];
 
                     int count = Mathf.FloorToInt(game.BaggageList.Count / game.Airplane.BaggagePointList.Count);
-                    Vector3 newRotate = new Vector3(Random.Range(-50f, 50f), Random.Range(-50f, 50f), 0f);
+                    //Vector3 newRotate = new Vector3(Random.Range(-50f, 50f), Random.Range(-50f, 50f), 0f);
 
                     Sequence mySeq = DOTween.Sequence();
-                    mySeq.Append(item.transform.DOLocalMove(new Vector3(0f, item.StackPoint.localPosition.y * (count / 3), 0f), moveTime));
-                    mySeq.Join(item.transform.DOLocalRotate(newRotate, moveTime));
+                    mySeq.Append(item.transform.DOLocalMove(new Vector3(0f, item.StackPoint.localPosition.y * count, 0f), moveTime));
+                    //mySeq.Join(item.transform.DOLocalRotate(newRotate, moveTime));
+                    mySeq.Join(item.transform.DOLocalRotate(Vector3.zero, moveTime));
                     mySeq.OnComplete(() =>
                     {
                         DOTween.Kill(item.transform);

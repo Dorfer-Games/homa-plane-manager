@@ -33,9 +33,7 @@ public class AirplaneTakeoffSystem : GameSystem
     void AirplaneTakeoff()
     {
         game.Airplane.DoorCollider.enabled = true;
-        game.Airplane.BaggageZone.SetActive(false);
-
-        game.Airplane.BaggageDoor.DOLocalRotate(new Vector3(0f, 0f, game.Airplane.BaggageDoorRotate.x), game.LadderCooldown);
+        
         game.Airplane.Ladder.DOLocalRotate(new Vector3(0f, 0f, game.Airplane.LadderRotate.x), game.LadderCooldown)
             .OnComplete(() =>
             {
@@ -60,6 +58,12 @@ public class AirplaneTakeoffSystem : GameSystem
                         Signals.Get<EffectSignal>().Dispatch(Camera.main.transform, EffectType.Camera, new Vector3(cooldown_2 * 1.2f, 0f, 0f));
                     });
             });
+
+        game.Airplane.BaggageZone.SetActive(false);
+        game.Airplane.BaggageDoor.DOLocalRotate(new Vector3(0f, 0f, game.Airplane.BaggageDoorRotate.x), game.LadderCooldown);
+
+        foreach (var item in game.BaggageList)
+            item.Model.gameObject.SetActive(false);
 
         Signals.Get<ControllerChangeSignal>().Dispatch(ControllerType.Airplane);
         Signals.Get<AirplaneStateSignal>().Dispatch(AirplaneState.Takeoff);

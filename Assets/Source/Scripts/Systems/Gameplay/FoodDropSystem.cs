@@ -54,6 +54,8 @@ public class FoodDropSystem : GameSystem
 
                 if (people.FoodAmount <= 0)
                 {
+                    people.Component.Animator.SetTrigger("Happy");
+
                     Signals.Get<EffectSignal>().Dispatch(people.Component.BubblePoint, EffectType.PeopleOrder, Vector3.zero);
                     Signals.Get<PaymentSignal>().Dispatch(people.Component.BubblePoint, Random.Range((int)paymentAmount.x, (int)paymentAmount.y));
                     Signals.Get<OrderUpdateSignal>().Dispatch();
