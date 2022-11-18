@@ -124,16 +124,24 @@ public class TutorialSystem : GameSystemWithScreen<GameplayUIScreen>
                 break;
 
             case 6:
-                tweeningVertical = new Vector2(2.5f, 3.5f);
+                tweeningVertical = new Vector2(1.5f, 2.5f);
 
                 if (game.ConveyorList.Count > 0) SaveTutorial(7);
 
-                if (!game.Airplane.BaggageZone.gameObject.activeSelf
-                    || game.Airplane.LadderLowerZone.gameObject.activeSelf
-                    || game.PeoplePlatformList.Count <= 0
-                    || game.BaggageList.Count > 0) return;
+                if (game.PeoplePlatformList.Count <= 0 || game.PlayerItemList.Count <= 0) return;
 
                 target = game.Conveyor.Zone;
+
+                break;
+
+            case 7:
+                tweeningVertical = new Vector2(2.5f, 3.5f);
+
+                if (game.ConveyorList.Count <= 0) return;
+
+                target = game.Airplane.LadderLowerZone.transform;
+
+                if (!target.gameObject.activeSelf) SaveTutorial(8);
 
                 break;
         }
@@ -171,9 +179,10 @@ public class TutorialSystem : GameSystemWithScreen<GameplayUIScreen>
         if (number == 4) HomaBelly.Instance.TrackDesignEvent("tutorial_step" + number + "_passengerService");
         if (number == 5) HomaBelly.Instance.TrackDesignEvent("tutorial_step" + number + "_airplaneLanding");
         if (number == 6) HomaBelly.Instance.TrackDesignEvent("tutorial_step" + number + "_baggageUnload");
-        if (number == 7)
+        if (number == 7) HomaBelly.Instance.TrackDesignEvent("tutorial_step" + number + "_conveyorDrop");
+        if (number == 8)
         {
-            HomaBelly.Instance.TrackDesignEvent("tutorial_step" + number + "_conveyorDrop");
+            HomaBelly.Instance.TrackDesignEvent("tutorial_step" + number + "_airplaneOpen");
             HomaBelly.Instance.TrackDesignEvent("tutorial_completed");
         }
     }
