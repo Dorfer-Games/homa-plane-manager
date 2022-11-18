@@ -56,11 +56,12 @@ public class AirplaneTakeoffSystem : GameSystem
                                 Signals.Get<ControllerChangeSignal>().Dispatch(ControllerType.Player);
                                 game.Ground.gameObject.SetActive(false);
                             });
+
+                        Signals.Get<EffectSignal>().Dispatch(Camera.main.transform, EffectType.Camera, new Vector3(cooldown_2 * 1.2f, 0f, 0f));
                     });
             });
 
         Signals.Get<ControllerChangeSignal>().Dispatch(ControllerType.Airplane);
-        Signals.Get<EffectSignal>().Dispatch(Camera.main.transform, EffectType.Camera, new Vector3(cooldown * 1.2f, 0f, 0f));
         Signals.Get<AirplaneStateSignal>().Dispatch(AirplaneState.Takeoff);
     }
 }
