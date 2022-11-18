@@ -100,16 +100,27 @@ public class TutorialSystem : GameSystemWithScreen<GameplayUIScreen>
                 break;
 
             case 4:
+                tweeningVertical = new Vector2(7.0f, 8.0f);
+
+                if (!game.Airplane.LadderRaiseZone.gameObject.activeSelf) return;
+
+                Transform unlock = Unlock();
+                if (game.PeopleFromPlaneList.Count > 0 || unlock == null) SaveTutorial(5);
+                else target = unlock;
+
+                break;
+
+            case 5:
                 tweeningVertical = new Vector2(3.5f, 4.5f);
 
-                if (game.PeopleFromPlaneList.Count > 0) SaveTutorial(5);
+                if (game.PeopleFromPlaneList.Count > 0) SaveTutorial(6);
 
                 if (!game.Airplane.LadderRaiseZone.gameObject.activeSelf) return;
                 target = game.Airplane.LadderRaiseZone.transform;
 
                 break;
 
-            case 5:
+            case 6:
                 tweeningVertical = new Vector2(2.5f, 3.5f);
 
                 if (!game.Airplane.BaggageZone.gameObject.activeSelf 
@@ -119,14 +130,14 @@ public class TutorialSystem : GameSystemWithScreen<GameplayUIScreen>
                 if (game.Player.transform.position.y > 1.8f) target = game.Airplane.TutorialPointList[1];
                 else target = game.Airplane.BaggageZone.transform;
 
-                if (game.BaggageList.Count <= 0) SaveTutorial(6);
+                if (game.BaggageList.Count <= 0) SaveTutorial(7);
 
                 break;
 
-            case 6:
+            case 7:
                 tweeningVertical = new Vector2(1.5f, 2.5f);
 
-                if (game.ConveyorList.Count > 0) SaveTutorial(7);
+                if (game.ConveyorList.Count > 0) SaveTutorial(8);
 
                 if (game.PeoplePlatformList.Count <= 0 || game.PlayerItemList.Count <= 0) return;
 
@@ -134,14 +145,14 @@ public class TutorialSystem : GameSystemWithScreen<GameplayUIScreen>
 
                 break;
 
-            case 7:
+            case 8:
                 tweeningVertical = new Vector2(2.5f, 3.5f);
 
                 if (game.ConveyorList.Count <= 0) return;
 
                 target = game.Airplane.LadderLowerZone.transform;
 
-                if (!target.gameObject.activeSelf) SaveTutorial(8);
+                if (!target.gameObject.activeSelf) SaveTutorial(9);
 
                 break;
         }
@@ -177,10 +188,11 @@ public class TutorialSystem : GameSystemWithScreen<GameplayUIScreen>
         if (number == 2) HomaBelly.Instance.TrackDesignEvent("tutorial_step" + number + "_baggageLoad");
         if (number == 3) HomaBelly.Instance.TrackDesignEvent("tutorial_step" + number + "_airplaneTakeoff");
         if (number == 4) HomaBelly.Instance.TrackDesignEvent("tutorial_step" + number + "_passengerService");
-        if (number == 5) HomaBelly.Instance.TrackDesignEvent("tutorial_step" + number + "_airplaneLanding");
-        if (number == 6) HomaBelly.Instance.TrackDesignEvent("tutorial_step" + number + "_baggageUnload");
-        if (number == 7) HomaBelly.Instance.TrackDesignEvent("tutorial_step" + number + "_conveyorDrop");
-        if (number == 8)
+        if (number == 5) HomaBelly.Instance.TrackDesignEvent("tutorial_step" + number + "_placeBuy");
+        if (number == 6) HomaBelly.Instance.TrackDesignEvent("tutorial_step" + number + "_airplaneLanding");
+        if (number == 7) HomaBelly.Instance.TrackDesignEvent("tutorial_step" + number + "_baggageUnload");
+        if (number == 8) HomaBelly.Instance.TrackDesignEvent("tutorial_step" + number + "_conveyorDrop");
+        if (number == 9)
         {
             HomaBelly.Instance.TrackDesignEvent("tutorial_step" + number + "_airplaneOpen");
             HomaBelly.Instance.TrackDesignEvent("tutorial_completed");
@@ -220,6 +232,15 @@ public class TutorialSystem : GameSystemWithScreen<GameplayUIScreen>
             }
         }
         return baggage;
+    }
+    Transform Unlock()
+    {
+        Transform unlock = null;
+
+        foreach (UnlockComponent _unlock in UnlockComponent.Hashset.ToList())
+            if (_unlock.GetOpeningNumber() == 0) unlock = _unlock.transform;
+
+        return unlock;
     }
     Transform PeopleCheck()
     {
