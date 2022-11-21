@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orderCooldown: {x: 1, y: 3}
-  orderStartAmount: 3
+  orderStartAmount: 6
   foodAmount: {x: 1, y: 3}

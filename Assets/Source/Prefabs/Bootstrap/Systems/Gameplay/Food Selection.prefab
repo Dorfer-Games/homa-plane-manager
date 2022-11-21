@@ -43,4 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93e1bc20a250c444d97def58e2c64f91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodMax: 3
+  foodMax: 7

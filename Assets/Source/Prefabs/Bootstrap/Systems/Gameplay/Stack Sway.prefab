@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minStackHeight: 1
-  integrityPerItem: 0.05
+  integrityPerItem: 1
   swayLerp: 1
-  swaySpeed: 1.5
+  swaySpeed: 2
   swayShake: 0.01
   swayStrength: 0.4

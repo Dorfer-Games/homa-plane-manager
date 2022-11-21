@@ -23,15 +23,21 @@ public class EffectLoadingSystem : GameSystem
                 break;
 
             case EffectType.PeopleOrder:
-                //newPosition = new Vector3(spawn.position.x,spawn.position.y + 1.5f, spawn.position.z);
 
-                //effect = Instantiate(emojiList[Random.Range(0, emojiList.Count)]);
-                //effect.transform.position = newPosition;
-                //Destroy(effect, 1f);
+                int random = Random.Range(0, 2);
+                if (random == 0)
+                {
+                    newPosition = new Vector3(spawn.position.x, spawn.position.y - 1.5f, spawn.position.z);
+                    effect = Instantiate(effectList[3]);
+                    effect.transform.position = newPosition;
+                } else
+                {
+                    newPosition = new Vector3(spawn.position.x,spawn.position.y + 1.5f, spawn.position.z);
 
-                newPosition = new Vector3(spawn.position.x, spawn.position.y - 1.5f, spawn.position.z);
-                effect = Instantiate(effectList[3]);
-                effect.transform.position = newPosition;
+                    effect = Instantiate(emojiList[Random.Range(0, emojiList.Count)]);
+                    effect.transform.position = newPosition;
+                }
+
                 Destroy(effect, 1f);
 
                 break;
