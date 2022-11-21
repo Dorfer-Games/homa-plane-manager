@@ -11,6 +11,7 @@ public class PeopleSpawnSystem : GameSystem
     [SerializeField, BoxGroup("Developer")] List<GameObject> baggagePrefabList;
 
     float borderOffset;
+    int VIP;
     public override void OnInit()
     {
         Signals.Get<AirplaneStateSignal>().AddListener(PeopleCheck);
@@ -32,7 +33,12 @@ public class PeopleSpawnSystem : GameSystem
             {
                 if (!place.gameObject.activeInHierarchy) continue;
 
-                int prefabID = Random.Range(0, peoplePrefabList.Count);
+                int prefabID = Random.Range(0, peoplePrefabList.Count - 1);
+                if (VIP < 3)
+                {
+                    VIP++;
+                    prefabID = 2;
+                }
 
                 GameObject people = Instantiate(peoplePrefabList[prefabID], game.Platform.transform);
                 var peopleData = new PeopleData()
@@ -40,7 +46,8 @@ public class PeopleSpawnSystem : GameSystem
                     Transform = people.transform,
                     Component = people.GetComponent<CharacterComponent>(),
                     Place = place,
-                    PlaceBlock = place.GetComponentInParent<PlaceBlockComponent>()
+                    PlaceBlock = place.GetComponentInParent<PlaceBlockComponent>(),
+                    IsVIP = prefabID == 2 ? true : false
                 };
                 peopleData.Component.Agent.enabled = false;
 

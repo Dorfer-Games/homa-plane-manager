@@ -26,15 +26,20 @@ public class FoodOrderSystem : GameSystem
 
         foreach (var people in game.PeoplePlaneList)
         {
-            people.FoodType = game.FoodList[Random.Range(0, game.FoodList.Count)].Type;
-            people.FoodAmount = Random.Range((int)foodAmount.x, (int)foodAmount.y + 1);
+            if (people.IsVIP) people.FoodType = game.FoodList[1].Type;
+            else people.FoodType = game.FoodList[0].Type;
+
+            people.FoodAmount = 1;
+
+            //people.FoodType = game.FoodList[Random.Range(0, game.FoodList.Count)].Type;
+            //people.FoodAmount = Random.Range((int)foodAmount.x, (int)foodAmount.y + 1);
 
             Extensions.BubbleUIUpdate(BubbleUIType.Attention, people.Component.BubblePoint);
         }
 
         if (player.TutorialOrder > 1)
         {
-            for (int i = 0; i < Mathf.Clamp(orderStartAmount, 0, HungryAmount()); i++)
+            for (int i = 0; i < game.PeoplePlaneList.Count; i++)
                 OrderCreate();
         } else OrderCreate();
     }

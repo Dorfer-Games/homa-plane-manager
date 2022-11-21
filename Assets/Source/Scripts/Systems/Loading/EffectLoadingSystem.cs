@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Kuhpik;
 using NaughtyAttributes;
 using Supyrb;
@@ -23,15 +24,18 @@ public class EffectLoadingSystem : GameSystem
                 break;
 
             case EffectType.PeopleOrder:
-                //newPosition = new Vector3(spawn.position.x,spawn.position.y + 1.5f, spawn.position.z);
+                if (position == Vector3.zero)
+                {
+                    newPosition = new Vector3(spawn.position.x, spawn.position.y - 1.5f, spawn.position.z);
+                    effect = Instantiate(effectList[3]);
+                    effect.transform.position = newPosition;
+                } else
+                {
+                    newPosition = new Vector3(spawn.position.x, spawn.position.y + 2.25f, spawn.position.z);
 
-                //effect = Instantiate(emojiList[Random.Range(0, emojiList.Count)]);
-                //effect.transform.position = newPosition;
-                //Destroy(effect, 1f);
-
-                newPosition = new Vector3(spawn.position.x, spawn.position.y - 1.5f, spawn.position.z);
-                effect = Instantiate(effectList[3]);
-                effect.transform.position = newPosition;
+                    effect = Instantiate(emojiList[1]);
+                    effect.transform.position = newPosition;
+                }
                 Destroy(effect, 1f);
 
                 break;
@@ -55,6 +59,19 @@ public class EffectLoadingSystem : GameSystem
             case EffectType.Camera:
                 effect = Instantiate(effectList[2], spawn);
                 Destroy(effect, position.x);
+
+                break;
+
+            case EffectType.VIP:
+                spawn.DOLocalMove(spawn.localPosition, Random.Range(0f, 2f))
+                  .OnComplete(() =>
+                  {
+                      newPosition = new Vector3(spawn.position.x, spawn.position.y + 3f, spawn.position.z);
+
+                      effect = Instantiate(emojiList[0]);
+                      effect.transform.position = newPosition;
+                      Destroy(effect, 1f);
+                  });
 
                 break;
         }
