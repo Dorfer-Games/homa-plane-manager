@@ -66,7 +66,7 @@ public class EffectLoadingSystem : GameSystem
                 spawn.DOLocalMove(spawn.localPosition, Random.Range(0f, 2f))
                   .OnComplete(() =>
                   {
-                      newPosition = new Vector3(spawn.position.x, spawn.position.y + 3f, spawn.position.z);
+                      newPosition = new Vector3(spawn.position.x, spawn.position.y - 0.5f, spawn.position.z - 1f);
 
                       effect = Instantiate(emojiList[0]);
                       effect.transform.position = newPosition;
