@@ -24,18 +24,10 @@ public class EffectLoadingSystem : GameSystem
                 break;
 
             case EffectType.PeopleOrder:
-                if (position == Vector3.zero)
-                {
-                    newPosition = new Vector3(spawn.position.x, spawn.position.y - 1.5f, spawn.position.z);
-                    effect = Instantiate(effectList[3]);
-                    effect.transform.position = newPosition;
-                } else
-                {
-                    newPosition = new Vector3(spawn.position.x, spawn.position.y + 2.25f, spawn.position.z);
+                newPosition = new Vector3(spawn.position.x, spawn.position.y - 1.5f, spawn.position.z);
+                effect = Instantiate(effectList[3]);
+                effect.transform.position = newPosition;
 
-                    effect = Instantiate(emojiList[1]);
-                    effect.transform.position = newPosition;
-                }
                 Destroy(effect, 1f);
 
                 break;

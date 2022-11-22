@@ -64,7 +64,16 @@ public class FoodDropSystem : GameSystem
                         foreach (var _people in game.PeoplePlaneList)
                         {
                             if (_people.IsVIP)
-                                Signals.Get<EffectSignal>().Dispatch(_people.Component.BubblePoint, EffectType.VIP, Vector3.zero);
+                            {
+                                //Signals.Get<EffectSignal>().Dispatch(_people.Component.BubblePoint, EffectType.VIP, Vector3.zero);
+                                
+                                _people.Transform.DOLocalMove(_people.Transform.localPosition, Random.Range(0f, 1f))
+                                  .OnComplete(() =>
+                                  {
+                                      _people.Component.Animator.SetTrigger("Angry");
+                                  });
+                            }
+
                         }
 
                         Signals.Get<EffectSignal>().Dispatch(people.Component.BubblePoint, EffectType.PeopleOrder, Vector3.zero);
