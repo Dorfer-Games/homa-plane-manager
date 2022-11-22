@@ -530,15 +530,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63cd325bc6151a840809ad52215eecef, type: 3}
---- !u!1 &289221284251182710 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 63cd325bc6151a840809ad52215eecef,
-    type: 3}
-  m_PrefabInstance: {fileID: 631327379520428839}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1101224208940563660 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 63cd325bc6151a840809ad52215eecef,
+    type: 3}
+  m_PrefabInstance: {fileID: 631327379520428839}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6866644996697118214 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -2915564166706934495, guid: 63cd325bc6151a840809ad52215eecef,
+    type: 3}
+  m_PrefabInstance: {fileID: 631327379520428839}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &289221284251182710 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 63cd325bc6151a840809ad52215eecef,
     type: 3}
   m_PrefabInstance: {fileID: 631327379520428839}
   m_PrefabAsset: {fileID: 0}
@@ -552,7 +558,7 @@ Animator:
   m_GameObject: {fileID: 289221284251182710}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 1e4245676bbff1f4a9da849d11c1df84, type: 3}
-  m_Controller: {fileID: 9100000, guid: eaef172f991934d459bf6d527fbe83ca, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3395c227aa7326f43be1301ac1ef12c5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -561,6 +567,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &171777727766858727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6866644996697118214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0.49310347, g: 0.42672417, b: 0.55, a: 1}
+  outlineWidth: 1.5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &6200029423397303051
 PrefabInstance:
   m_ObjectHideFlags: 0

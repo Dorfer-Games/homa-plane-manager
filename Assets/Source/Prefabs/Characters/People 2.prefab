@@ -671,3 +671,27 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 6200029423397303051}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5639506456235186877 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1750036408002374070, guid: 1e4245676bbff1f4a9da849d11c1df84,
+    type: 3}
+  m_PrefabInstance: {fileID: 6200029423397303051}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8983549761614429840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5639506456235186877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0.688, g: 0.32137248, b: 0.088064015, a: 1}
+  outlineWidth: 1.5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
