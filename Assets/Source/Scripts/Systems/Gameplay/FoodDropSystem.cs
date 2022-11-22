@@ -3,6 +3,7 @@ using Kuhpik;
 using MoreMountains.NiceVibrations;
 using NaughtyAttributes;
 using Supyrb;
+using System.Collections;
 using UnityEngine;
 
 public class FoodDropSystem : GameSystem
@@ -24,21 +25,21 @@ public class FoodDropSystem : GameSystem
             {
                 if (people.Place == place)
                 {
-                    if (people.IsFoodReady && people.FoodAmount > 0) FoodDrop(people);
+                    if (people.IsFoodReady && people.FoodAmount > 0) StartCoroutine(FoodDrop(people));
 
                     break;
                 }
             }
         }
     }
-    void FoodDrop(PeopleData people)
+    IEnumerator FoodDrop(PeopleData people)
     {
         for (int i = game.PlayerItemList.Count - 1; i >= 0; i--)
         {
             if (game.PlayerItemList[i].ItemType == people.FoodType)
             {
                 ItemComponent item = game.PlayerItemList[i];
-                item.transform.parent = people.Transform;
+                item.transform.parent = people.Component.FoodPoint;
 
                 Extensions.StackSorting(game.Player.StackPoint, game.PlayerItemList, i);
 
@@ -52,6 +53,15 @@ public class FoodDropSystem : GameSystem
                 people.FoodAmount--;
                 Extensions.BubbleUIUpdate(BubbleUIType.Order, people.Component.BubblePoint, people.FoodAmount, people.FoodType);
 
+                
+
+                Signals.Get<VibrationSignal>().Dispatch(HapticTypes.LightImpact);
+
+                //crea
+                yield return new WaitForSeconds(0.1f);
+
+                people.Component.Renderer.SetBlendShapeWeight(0, 100 - (people.FoodAmount * 100 / 25));
+
                 if (people.FoodAmount <= 0)
                 {
                     people.Component.Animator.SetTrigger("Happy");
@@ -62,11 +72,6 @@ public class FoodDropSystem : GameSystem
 
                     break;
                 }
-
-                Signals.Get<VibrationSignal>().Dispatch(HapticTypes.LightImpact);
-
-                //crea
-                people.Component.Renderer.SetBlendShapeWeight(0, 100 - (people.FoodAmount * 100 / 25));
             }
         }
     }

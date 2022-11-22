@@ -27,7 +27,7 @@ public class UnlockSystem : GameSystem
 
         if (player.UnlockList == null) player.UnlockList = new List<UnlockData>();
 
-        //UpdateInformation();
+        UpdateInformation();
     }
     void TriggerEnterCheck(Transform other, Transform original)
     {
@@ -57,7 +57,7 @@ public class UnlockSystem : GameSystem
         Extensions.BubbleUIUpdate(BubbleUIType.Unlock, unlockComponent.BubblePoint, price);
 
         unlockComponent.SetPrice(price);
-        SaveInformation(unlockComponent.name, price);
+        //SaveInformation(unlockComponent.name, price);
 
         if (price <= 0)
         {

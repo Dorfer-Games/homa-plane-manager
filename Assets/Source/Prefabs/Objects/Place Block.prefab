@@ -215,6 +215,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: fx_SeatLigthing
       objectReference: {fileID: 0}
+    - target: {fileID: 2975589996518476002, guid: 994ef854a7f5ff143801f1c37dc5ddf0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 994ef854a7f5ff143801f1c37dc5ddf0, type: 3}
 --- !u!4 &4719996565161433546 stripped
@@ -293,7 +298,7 @@ PrefabInstance:
     - target: {fileID: 5665799053385373582, guid: e2e6e046a11a5c1439b7b6ed14f0062a,
         type: 3}
       propertyPath: m_Size.x
-      value: 3.5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5665799053385373582, guid: e2e6e046a11a5c1439b7b6ed14f0062a,
         type: 3}
@@ -395,7 +400,7 @@ PrefabInstance:
     - target: {fileID: 5665799053385373582, guid: e2e6e046a11a5c1439b7b6ed14f0062a,
         type: 3}
       propertyPath: m_Size.x
-      value: 3.5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5665799053385373582, guid: e2e6e046a11a5c1439b7b6ed14f0062a,
         type: 3}

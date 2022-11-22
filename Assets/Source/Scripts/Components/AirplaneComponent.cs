@@ -19,6 +19,8 @@ public class AirplaneComponent : MonoBehaviour
 
     [SerializeField, BoxGroup("Debug"), ReadOnly] bool isLadderOpen;
 
+    [SerializeField, BoxGroup("Crea")] public Transform DoorTualet;
+
     public Collider DoorCollider => doorCollider;
     public bool IsLadderOpen => isLadderOpen;
     public GameObject LadderLowerZone => ladderLowerZone;

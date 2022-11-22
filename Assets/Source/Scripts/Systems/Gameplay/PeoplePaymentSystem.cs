@@ -13,7 +13,7 @@ public class PeoplePaymentSystem : GameSystem
 
     public override void OnInit()
     {
-        Signals.Get<PaymentSignal>().AddListener(Payment);
+        //Signals.Get<PaymentSignal>().AddListener(Payment);
 
         game.MoneyPrefab = moneyPrefab;
     }
