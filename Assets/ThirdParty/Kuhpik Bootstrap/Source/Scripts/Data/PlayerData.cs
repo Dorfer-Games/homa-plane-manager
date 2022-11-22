@@ -15,7 +15,7 @@ namespace Kuhpik
         public int GameLevel;
 
         public int Tutorial;
-        public int TutorialOrder;
+        public int TutorialOrder = 10;
 
         public bool IsVibration;
         public bool IsGameLaunch;

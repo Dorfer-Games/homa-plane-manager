@@ -13,6 +13,8 @@ public class ResourceLoadingSystem : GameSystemWithScreen<ResourceUIScreen>
         Signals.Get<MoneyChangeSignal>().AddListener(MoneyAmountChange);
 
         MoneyAmountUpdate(player.MoneyAmount, false);
+
+        MoneyAmountChange(100);
     }
     void MoneyAmountChange(int amount)
     {

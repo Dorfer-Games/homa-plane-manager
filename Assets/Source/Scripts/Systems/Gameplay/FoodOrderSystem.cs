@@ -12,6 +12,8 @@ public class FoodOrderSystem : GameSystem
     [SerializeField, BoxGroup("Developer")] int orderStartAmount;
     [SerializeField, BoxGroup("Developer")] Vector2 foodAmount;
 
+    [SerializeField, BoxGroup("Crea")] Vector2 air;
+
     public override void OnInit()
     {
         Signals.Get<AirplaneStateSignal>().AddListener(AttentionCreate);
@@ -26,7 +28,7 @@ public class FoodOrderSystem : GameSystem
 
         foreach (var people in game.PeoplePlaneList)
         {
-            people.FoodType = game.FoodList[Random.Range(0, game.FoodList.Count)].Type;
+            people.FoodType = game.FoodList[0].Type;
             people.FoodAmount = Random.Range((int)foodAmount.x, (int)foodAmount.y + 1);
 
             Extensions.BubbleUIUpdate(BubbleUIType.Attention, people.Component.BubblePoint);
@@ -41,52 +43,35 @@ public class FoodOrderSystem : GameSystem
     void OrderCreate()
     {
         PeopleData people;
-        switch (player.TutorialOrder)
+        if (HungryAmount() > 0)
         {
-            default:
-                if (HungryAmount() > 0)
-                {
-                    people = game.PeoplePlaneList[PeopleID()];
-                    OrderActive(people);
-                }
-                else if (WaitAmount() <= 0)
-                {
-                    foreach (var table in TableFoodComponent.Hashset.ToList())
-                        table.TriggerZone.SetActive(false);
-
-                    for (int i = game.PlayerItemList.Count - 1; i >= 0; i--)
-                        Destroy(game.PlayerItemList[i].gameObject);
-
-                    game.PlayerItemList.Clear();
-
-                    Signals.Get<AirplaneStateSignal>().Dispatch(AirplaneState.Landing);
-                }
-
-                ZoneUpdate();
-
-                break;
-
-            case 0:
-                people = game.PeoplePlaneList[0];
-                people.FoodType = game.FoodList[0].Type;
-                people.FoodAmount = 1;
-
-                OrderActive(people);
-
-                player.TutorialOrder++;
-
-                break;
-            case 1:
-                people = game.PeoplePlaneList[1];
-                people.FoodType = game.FoodList[1].Type;
-                people.FoodAmount = 1;
-
-                OrderActive(people);
-
-                player.TutorialOrder++;
-
-                break;
+            people = game.PeoplePlaneList[PeopleID()];
+            OrderActive(people);
         }
+        else if (WaitAmount() <= 0)
+        {
+            foreach (var table in TableFoodComponent.Hashset.ToList())
+                table.TriggerZone.SetActive(false);
+
+            for (int i = game.PlayerItemList.Count - 1; i >= 0; i--)
+                Destroy(game.PlayerItemList[i].gameObject);
+
+            game.PlayerItemList.Clear();
+
+            game.Airplane.transform.DORotate(new Vector3(0f, 0f, air.x), air.y)
+                .OnComplete(() =>
+                {
+                    //Signals.Get<NavigationUpdateSignal>().Dispatch();
+
+
+                });
+
+            foreach (TriggerZoneComponent component in TriggerZoneComponent.Hashset.ToList())
+                component.transform.localPosition = Vector3.zero;
+            //Signals.Get<AirplaneStateSignal>().Dispatch(AirplaneState.Landing);
+        }
+
+        ZoneUpdate();
     }
     void OrderActive(PeopleData people)
     {

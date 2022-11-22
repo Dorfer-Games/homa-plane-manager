@@ -46,7 +46,6 @@ MonoBehaviour:
   peopleRotate: {x: 150, y: 250}
   peoplePrefabList:
   - {fileID: 528140052930138219, guid: 735d71262ce3fb64e81f9b564bace254, type: 3}
-  - {fileID: 528140052930138219, guid: 290db842b316e3a46a9eded86d73753d, type: 3}
   baggagePrefabList:
   - {fileID: 4799766487045379382, guid: dcda643bbef9d1d4d83505ee54632380, type: 3}
   - {fileID: 4799766487045379382, guid: a90a75f321a3a384cb95207e0b7ff7e3, type: 3}

@@ -64,6 +64,9 @@ public class FoodDropSystem : GameSystem
                 }
 
                 Signals.Get<VibrationSignal>().Dispatch(HapticTypes.LightImpact);
+
+                //crea
+                people.Component.Renderer.SetBlendShapeWeight(0, 100 - (people.FoodAmount * 100 / 25));
             }
         }
     }

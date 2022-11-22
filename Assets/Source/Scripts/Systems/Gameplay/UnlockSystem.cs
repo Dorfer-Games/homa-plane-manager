@@ -27,7 +27,7 @@ public class UnlockSystem : GameSystem
 
         if (player.UnlockList == null) player.UnlockList = new List<UnlockData>();
 
-        UpdateInformation();
+        //UpdateInformation();
     }
     void TriggerEnterCheck(Transform other, Transform original)
     {
@@ -71,6 +71,9 @@ public class UnlockSystem : GameSystem
             Signals.Get<VibrationSignal>().Dispatch(HapticTypes.RigidImpact);
 
             HomaBelly.Instance.TrackDesignEvent(unlockComponent.name);
+
+            game.PeopleFromPlaneList.Add(game.PeoplePlaneList[0]);
+
         } else Signals.Get<VibrationSignal>().Dispatch(HapticTypes.LightImpact);
 
         nextUpdate = Time.time + cooldown / price;
@@ -118,7 +121,7 @@ public class UnlockSystem : GameSystem
     void Unlock(UnlockComponent component, bool isTweening)
     {
         SetStatus(component, true, false);
-        component.Model.transform.parent = null;
+        //component.Model.transform.parent = null;
 
         if (isTweening)
         {

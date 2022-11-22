@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Kuhpik;
 using NaughtyAttributes;
 using Supyrb;
@@ -32,7 +33,7 @@ public class PeopleFromPlaneSystem : GameSystem
             case 0:
                 people.Component.Agent.speed = people.Component.Speed * 1.5f;
                 people.Component.Agent.stoppingDistance = stoppingDistance;
-                people.Target = component.PointList[Random.Range(0, component.PointList.Count)];
+                people.Target = game.Airplane.TutorialPointList[2];
 
                 people.Transform.parent = people.Place.PlacePoint;
                 people.Transform.localPosition = Vector3.zero;
@@ -50,13 +51,19 @@ public class PeopleFromPlaneSystem : GameSystem
 
                 people.Stage = 1;
 
+                game.Airplane.transform.DORotate(Vector3.zero, 3f)
+                .OnComplete(() =>
+                {
+
+                });
+
                 break;
             case 1:
                 distance = Vector3.Distance(people.Target.position, people.Transform.position);
                 if (distance - distanceOffset > stoppingDistance)
                 {
                     people.Component.Agent.SetDestination(people.Target.position);
-                    Extensions.PeopleAnimation(people.Component.Animator, "isRun", people.Component.Agent.speed);
+                    Extensions.PeopleAnimation(people.Component.Animator, "isRunFat", people.Component.Agent.speed);
                 }
                 else
                 {
@@ -68,8 +75,22 @@ public class PeopleFromPlaneSystem : GameSystem
 
                 break;
             case 2:
-                game.PeopleFromPlaneList.Remove(people);
-                Destroy(people.Transform.gameObject);
+                people.Component.Agent.enabled = false;
+                people.Component.Collider.enabled = false;
+
+                people.Transform.parent = game.Airplane.TutorialPointList[3];
+                people.Transform.localPosition = Vector3.zero;
+                people.Transform.localEulerAngles = Vector3.zero;
+
+                Signals.Get<EffectSignal>().Dispatch(game.Airplane.TutorialPointList[3], EffectType.Crea, Vector3.zero);
+
+                people.Stage = 3;
+
+                people.Component.Renderer.SetBlendShapeWeight(0, 0);
+
+                break;
+            case 3:
+                
 
                 break;
         }

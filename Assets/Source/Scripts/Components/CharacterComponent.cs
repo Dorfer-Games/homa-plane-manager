@@ -16,6 +16,8 @@ public class CharacterComponent : MonoBehaviour
     [SerializeField, BoxGroup("Point")] Transform stackPoint;
     [SerializeField, BoxGroup("Point")] Transform bubblePoint;
 
+    [SerializeField, BoxGroup("Crea")] public SkinnedMeshRenderer Renderer;
+
     public Rigidbody Rigidbody => rb;
     public Animator Animator => animator;
     public TriggerListenerComponent Trigger => trigger;
