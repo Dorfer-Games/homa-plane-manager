@@ -26,67 +26,38 @@ public class FoodOrderSystem : GameSystem
 
         foreach (var people in game.PeoplePlaneList)
         {
-            people.FoodType = game.FoodList[Random.Range(0, game.FoodList.Count)].Type;
+            people.FoodType = game.FoodList[0].Type;
             people.FoodAmount = Random.Range((int)foodAmount.x, (int)foodAmount.y + 1);
 
             Extensions.BubbleUIUpdate(BubbleUIType.Attention, people.Component.BubblePoint);
         }
 
-        if (player.TutorialOrder > 1)
-        {
-            for (int i = 0; i < Mathf.Clamp(orderStartAmount, 0, HungryAmount()); i++)
-                OrderCreate();
-        } else OrderCreate();
+        for (int i = 0; i < Mathf.Clamp(orderStartAmount, 0, HungryAmount()); i++)
+            OrderCreate();
     }
     void OrderCreate()
     {
         PeopleData people;
-        switch (player.TutorialOrder)
+
+        if (HungryAmount() > 0)
         {
-            default:
-                if (HungryAmount() > 0)
-                {
-                    people = game.PeoplePlaneList[PeopleID()];
-                    OrderActive(people);
-                }
-                else if (WaitAmount() <= 0)
-                {
-                    foreach (var table in TableFoodComponent.Hashset.ToList())
-                        table.TriggerZone.SetActive(false);
-
-                    for (int i = game.PlayerItemList.Count - 1; i >= 0; i--)
-                        Destroy(game.PlayerItemList[i].gameObject);
-
-                    game.PlayerItemList.Clear();
-
-                    Signals.Get<AirplaneStateSignal>().Dispatch(AirplaneState.Landing);
-                }
-
-                ZoneUpdate();
-
-                break;
-
-            case 0:
-                people = game.PeoplePlaneList[0];
-                people.FoodType = game.FoodList[0].Type;
-                people.FoodAmount = 1;
-
-                OrderActive(people);
-
-                player.TutorialOrder++;
-
-                break;
-            case 1:
-                people = game.PeoplePlaneList[1];
-                people.FoodType = game.FoodList[1].Type;
-                people.FoodAmount = 1;
-
-                OrderActive(people);
-
-                player.TutorialOrder++;
-
-                break;
+            people = game.PeoplePlaneList[PeopleID()];
+            OrderActive(people);
         }
+        else if (WaitAmount() <= 0)
+        {
+            foreach (var table in TableFoodComponent.Hashset.ToList())
+                table.TriggerZone.SetActive(false);
+
+            for (int i = game.PlayerItemList.Count - 1; i >= 0; i--)
+                Destroy(game.PlayerItemList[i].gameObject);
+
+            game.PlayerItemList.Clear();
+
+            Signals.Get<AirplaneStateSignal>().Dispatch(AirplaneState.Landing);
+        }
+
+        ZoneUpdate();
     }
     void OrderActive(PeopleData people)
     {

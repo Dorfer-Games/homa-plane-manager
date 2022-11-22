@@ -28,7 +28,7 @@ public class BaggageSelectionSystem : GameSystem
             ItemComponent component = other.GetComponent<ItemComponent>();
             game.PlayerItemList.Add(component);
 
-            Sequence mySeq = Extensions.MoveItem(component, game.PlayerItemList.Count, 0.25f, 1f, 1f, new Vector3(0f, 90f, 0f));
+            Sequence mySeq = Extensions.MoveItem(component, game.PlayerItemList.Count, 0.25f, 1f, 1f, new Vector3(0f, 90f, 90f));
             mySeq.OnComplete(() =>
             {
                 DOTween.Kill(component.transform);
