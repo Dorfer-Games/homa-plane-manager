@@ -50,6 +50,7 @@ Transform:
   - {fileID: 2705927361175989746}
   - {fileID: 630936569743284902}
   - {fileID: 5585159126549243276}
+  - {fileID: 4053537370448630786}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -70,6 +71,50 @@ MonoBehaviour:
   additionalStatesInTheBegining: 
   additionalStatesInTheEnd: 
   systemNames: []
+--- !u!1 &3905904219609823982
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4053537370448630786}
+  - component: {fileID: 4512812512858501850}
+  m_Layer: 0
+  m_Name: Crea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4053537370448630786
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3905904219609823982}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9086711272038477164}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4512812512858501850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3905904219609823982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7a53fa83ca3dfa4fa4e662e46865a06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creaTag: Crea
 --- !u!1001 &463153268946223913
 PrefabInstance:
   m_ObjectHideFlags: 0

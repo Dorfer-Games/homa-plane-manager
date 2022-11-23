@@ -43,9 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d34ab1a558d520d4bbadaa648ecc7a07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minStackHeight: 1
+  minStackHeight: 10
   integrityPerItem: 1
   swayLerp: 1
   swaySpeed: 2
   swayShake: 0.01
-  swayStrength: 0.4
+  swayStrength: 0.8

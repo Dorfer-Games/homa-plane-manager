@@ -13,8 +13,6 @@ public class PlayerMovementSystem : GameSystem
     }
     public override void OnFixedUpdate()
     {
-        if (game.CameraController != ControllerType.Player && game.CameraController != ControllerType.Airplane) return;
-
         if (game.Direction != Vector3.zero)
         {
             Move();

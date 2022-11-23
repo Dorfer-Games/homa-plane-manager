@@ -22,7 +22,7 @@ public class AirplaneTakeoffSystem : GameSystem
 
         if (isCheck)
         {
-            if (game.PeopleOnPlaneList.Count > 0 || game.BaggageList.Count < game.PeoplePlaneList.Count) return;
+            if (game.PeopleOnPlaneList.Count > 0) return;
             if (game.Player.transform.position.y < game.Airplane.LadderRaiseZone.transform.position.y - 0.25f ||
                 game.Player.transform.position.x > game.Airplane.Ladder.position.x - 1f) return;
 
@@ -32,6 +32,9 @@ public class AirplaneTakeoffSystem : GameSystem
     }
     void AirplaneTakeoff()
     {
+        Signals.Get<ControllerChangeSignal>().Dispatch(ControllerType.Airplane);
+
+        /*
         game.Airplane.DoorCollider.enabled = true;
         
         game.Airplane.Ladder.DOLocalRotate(new Vector3(0f, 0f, game.Airplane.LadderRotate.x), game.LadderCooldown)
@@ -67,5 +70,6 @@ public class AirplaneTakeoffSystem : GameSystem
 
         Signals.Get<ControllerChangeSignal>().Dispatch(ControllerType.Airplane);
         Signals.Get<AirplaneStateSignal>().Dispatch(AirplaneState.Takeoff);
+        */
     }
 }

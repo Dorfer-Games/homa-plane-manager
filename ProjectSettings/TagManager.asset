@@ -10,6 +10,7 @@ TagManager:
   - Money
   - Unlock
   - Conveyor
+  - Crea
   layers:
   - Default
   - TransparentFX
