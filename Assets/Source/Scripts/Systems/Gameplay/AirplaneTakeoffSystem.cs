@@ -5,7 +5,7 @@ using Supyrb;
 using System.Linq;
 using UnityEngine;
 
-public class AirplaneTakeoffSystem : GameSystem
+public class AirplaneTakeoffSystem : GameSystemWithScreen<SettingsUIScreen>
 {
     [SerializeField, BoxGroup("Developer")] Vector2 length;
     [SerializeField, BoxGroup("Developer")] float height = 10f;
@@ -42,6 +42,14 @@ public class AirplaneTakeoffSystem : GameSystem
                     people.Component.Animator.SetTrigger("Angry");
                 });
         }
+
+        screen.FAIL.transform.DOLocalMove(screen.FAIL.transform.localPosition, 2f)
+                .OnComplete(() =>
+                {
+                    screen.FAIL.SetActive(true);
+                });
+
+        
 
         /*
         game.Airplane.DoorCollider.enabled = true;

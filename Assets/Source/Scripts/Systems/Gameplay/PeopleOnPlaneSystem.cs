@@ -53,6 +53,7 @@ public class PeopleOnPlaneSystem : GameSystem
                 people.Transform.parent = people.Place.PeoplePoint;
                 people.Transform.localPosition = Vector3.zero;
                 people.Transform.localEulerAngles = Vector3.zero;
+                people.Transform.localScale = new Vector3(1f, 1f, 1f);
 
                 game.PeopleOnPlaneList.Remove(people);
                 game.PeoplePlaneList.Add(people);

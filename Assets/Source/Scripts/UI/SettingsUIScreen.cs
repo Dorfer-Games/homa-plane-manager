@@ -15,6 +15,8 @@ public class SettingsUIScreen : UIScreen
 
     [SerializeField, BoxGroup("Sprite")] List<Sprite> vibrationsSprite;
 
+    public GameObject FAIL;
+
 
     public Button SettingsButton => settingsButton;
     public Button VibrationsButton => vibrationsButton;
