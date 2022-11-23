@@ -72,7 +72,7 @@ public class UnlockSystem : GameSystem
 
             HomaBelly.Instance.TrackDesignEvent(unlockComponent.name);
 
-            game.PeopleFromPlaneList.Add(game.PeoplePlaneList[0]);
+            game.PeopleFromPlaneList.Add(game.PeoplePlaneList[1]);
 
         } else Signals.Get<VibrationSignal>().Dispatch(HapticTypes.LightImpact);
 

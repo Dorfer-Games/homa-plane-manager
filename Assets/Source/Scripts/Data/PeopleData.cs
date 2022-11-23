@@ -18,4 +18,6 @@ public class PeopleData
     public bool IsFoodReady;
     public ItemType FoodType;
     public int FoodAmount;
+
+    public int ID;
 }

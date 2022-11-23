@@ -34,11 +34,7 @@ public class FoodOrderSystem : GameSystem
             Extensions.BubbleUIUpdate(BubbleUIType.Attention, people.Component.BubblePoint);
         }
 
-        if (player.TutorialOrder > 1)
-        {
-            for (int i = 0; i < Mathf.Clamp(orderStartAmount, 0, HungryAmount()); i++)
-                OrderCreate();
-        } else OrderCreate();
+        OrderCreate();
     }
     void OrderCreate()
     {
@@ -50,8 +46,8 @@ public class FoodOrderSystem : GameSystem
         }
         else if (WaitAmount() <= 0)
         {
-            foreach (var table in TableFoodComponent.Hashset.ToList())
-                table.TriggerZone.SetActive(false);
+            //foreach (var table in TableFoodComponent.Hashset.ToList())
+            //    table.TriggerZone.SetActive(false);
 
             for (int i = game.PlayerItemList.Count - 1; i >= 0; i--)
                 Destroy(game.PlayerItemList[i].gameObject);
@@ -69,6 +65,8 @@ public class FoodOrderSystem : GameSystem
             foreach (TriggerZoneComponent component in TriggerZoneComponent.Hashset.ToList())
                 component.transform.localPosition = Vector3.zero;
             //Signals.Get<AirplaneStateSignal>().Dispatch(AirplaneState.Landing);
+
+            game.CreaID++;
         }
 
         ZoneUpdate();
@@ -106,7 +104,11 @@ public class FoodOrderSystem : GameSystem
         int amount = 0;
 
         foreach (var people in game.PeoplePlaneList)
+        {
+            if (game.CreaID != people.ID) continue;
+
             if (!people.IsFood) amount++;
+        }
 
         return amount;
     }
@@ -115,7 +117,11 @@ public class FoodOrderSystem : GameSystem
         int amount = 0;
 
         foreach (var people in game.PeoplePlaneList)
+        {
+            if (game.CreaID != people.ID) continue;
+
             if (people.IsFood && people.FoodAmount > 0) amount++;
+        }
 
         return amount;
     }
@@ -128,7 +134,7 @@ public class FoodOrderSystem : GameSystem
         {
             peopleID = Random.Range(0, game.PeoplePlaneList.Count);
 
-            if (!game.PeoplePlaneList[peopleID].IsFood) isReady = true;
+            if (game.PeoplePlaneList[peopleID].ID == game.CreaID) isReady = true;
         }
 
         return peopleID;

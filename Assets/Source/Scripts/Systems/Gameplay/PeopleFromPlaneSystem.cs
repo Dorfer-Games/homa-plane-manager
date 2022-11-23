@@ -63,7 +63,7 @@ public class PeopleFromPlaneSystem : GameSystem
                 if (distance - distanceOffset > stoppingDistance)
                 {
                     people.Component.Agent.SetDestination(people.Target.position);
-                    Extensions.PeopleAnimation(people.Component.Animator, "isRun", people.Component.Agent.speed);
+                    Extensions.PeopleAnimation(people.Component.Animator, "isRunFood", people.Component.Agent.speed);
                 }
                 else
                 {
@@ -74,12 +74,12 @@ public class PeopleFromPlaneSystem : GameSystem
                     people.Stage = 2;
 
                     game.Airplane.DoorTualet.transform.DORotate(Vector3.zero, 1f)
-                    .OnComplete(() =>
-                    {
-                        Signals.Get<EffectSignal>().Dispatch(game.Airplane.TutorialPointList[3], EffectType.Crea, Vector3.zero);
+                        .OnComplete(() =>
+                        {
+                            Signals.Get<EffectSignal>().Dispatch(game.Airplane.TutorialPointList[3], EffectType.Crea, Vector3.zero);
 
-                        people.Component.Renderer.SetBlendShapeWeight(0, 0);
-                    });
+                            people.Component.Renderer.SetBlendShapeWeight(0, 0);
+                        });
                 }
 
                 break;
@@ -89,7 +89,7 @@ public class PeopleFromPlaneSystem : GameSystem
                 if (distance - distanceOffset > stoppingDistance)
                 {
                     people.Component.Agent.SetDestination(people.Target.position);
-                    Extensions.PeopleAnimation(people.Component.Animator, "isRun", people.Component.Agent.speed);
+                    Extensions.PeopleAnimation(people.Component.Animator, "isRunFood", people.Component.Agent.speed);
                 }
                 else
                 {
@@ -110,9 +110,88 @@ public class PeopleFromPlaneSystem : GameSystem
 
                 Extensions.PeopleAnimation(people.Component.Animator, "isSit");
 
-                people.Stage = 4;
+                game.Airplane.DoorTualet.transform.DORotate(Vector3.zero, 1f)
+                        .OnComplete(() =>
+                        {
+                            people.Stage = 4;
+                        });   
 
                 people.Component.Renderer.SetBlendShapeWeight(0, 0);
+
+                break;
+
+            case 4:
+                game.Airplane.DoorTualet.transform.DORotate(new Vector3(0f, -120f, 0f), 1f)
+                    .OnComplete(() =>
+                    {
+
+                    });
+
+                people.Component.Agent.speed = people.Component.Speed;
+                people.Target = game.Airplane.TutorialPointList[2];
+
+                people.Transform.parent = game.Airplane.TutorialPointList[3];
+                people.Transform.localPosition = Vector3.zero;
+                people.Transform.localEulerAngles = Vector3.zero;
+
+                people.Component.Agent.enabled = true;
+                people.Component.Collider.enabled = true;
+
+                Extensions.PeopleAnimation(people.Component.Animator, "None");
+
+                people.Stage = 5;
+
+                Signals.Get<OrderUpdateSignal>().Dispatch();
+
+                break;
+
+            case 5:
+                distance = Vector3.Distance(people.Target.position, people.Transform.position);
+                if (distance - distanceOffset > stoppingDistance)
+                {
+                    people.Component.Agent.SetDestination(people.Target.position);
+                    Extensions.PeopleAnimation(people.Component.Animator, "isRun", people.Component.Agent.speed);
+                }
+                else
+                {
+                    people.Component.Agent.ResetPath();
+                    Extensions.PeopleAnimation(people.Component.Animator, "None");
+
+                    people.Target = people.Place.PlacePoint;
+                    people.Stage = 6;
+                }
+
+                break;
+
+            case 6:
+                distance = Vector3.Distance(people.Target.position, people.Transform.position);
+                if (distance - distanceOffset > stoppingDistance)
+                {
+                    people.Component.Agent.SetDestination(people.Target.position);
+                    Extensions.PeopleAnimation(people.Component.Animator, "isRun", people.Component.Agent.speed);
+                }
+                else
+                {
+                    people.Component.Agent.ResetPath();
+                    Extensions.PeopleAnimation(people.Component.Animator, "None");
+
+                    people.Stage = 7;
+                }
+
+                break;
+
+            case 7:
+                people.Component.Agent.enabled = false;
+                people.Component.Collider.enabled = false;
+
+                people.Transform.parent = people.Place.PeoplePoint;
+                people.Transform.localPosition = Vector3.zero;
+                people.Transform.localEulerAngles = Vector3.zero;
+
+                game.PeopleFromPlaneList.Remove(people);
+
+                Extensions.PeopleAnimation(people.Component.Animator, "isSit");
+                people.Stage = 0;
 
                 break;
         }

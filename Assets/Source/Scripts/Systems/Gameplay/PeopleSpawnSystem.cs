@@ -26,6 +26,7 @@ public class PeopleSpawnSystem : GameSystem
     }
     void PeopleCreate()
     {
+        int ID = 0;
         foreach (var block in game.Airplane.PlaceList)
         {
             foreach (var place in block.PlaceList)
@@ -40,7 +41,8 @@ public class PeopleSpawnSystem : GameSystem
                     Transform = people.transform,
                     Component = people.GetComponent<CharacterComponent>(),
                     Place = place,
-                    PlaceBlock = place.GetComponentInParent<PlaceBlockComponent>()
+                    PlaceBlock = place.GetComponentInParent<PlaceBlockComponent>(),
+                    ID = ID
                 };
                 peopleData.Component.Agent.enabled = false;
 
@@ -71,6 +73,7 @@ public class PeopleSpawnSystem : GameSystem
                 game.PeoplePlatformList.Add(peopleData);
 
                 BaggageCreate(peopleData);
+                ID++;
             }
         }
     }
