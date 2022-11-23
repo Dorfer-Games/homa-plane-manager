@@ -34,6 +34,15 @@ public class AirplaneTakeoffSystem : GameSystem
     {
         Signals.Get<ControllerChangeSignal>().Dispatch(ControllerType.Airplane);
 
+        foreach (var people in game.PeoplePlaneList)
+        {
+            people.Transform.DOLocalMove(people.Transform.localPosition, Random.Range(0f, 2f))
+                .OnComplete(() =>
+                {
+                    people.Component.Animator.SetTrigger("Angry");
+                });
+        }
+
         /*
         game.Airplane.DoorCollider.enabled = true;
         
