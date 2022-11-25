@@ -78,6 +78,7 @@ public class PeopleFromPlaneSystem : GameSystem
                         {
                             Signals.Get<EffectSignal>().Dispatch(game.Airplane.TutorialPointList[3], EffectType.Crea, Vector3.zero);
 
+                            people.Transform.DOScale(new Vector3(1f, 1f, 1f), 0.75f);
                             people.Component.Renderer.SetBlendShapeWeight(0, 0);
                         });
                 }
@@ -114,8 +115,9 @@ public class PeopleFromPlaneSystem : GameSystem
                         .OnComplete(() =>
                         {
                             people.Stage = 4;
-                        });   
+                        });
 
+                people.Transform.DOScale(new Vector3(1f, 1f, 1f), 0.75f);
                 people.Component.Renderer.SetBlendShapeWeight(0, 0);
 
                 break;

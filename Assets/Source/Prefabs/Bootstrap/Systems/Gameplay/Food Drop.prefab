@@ -45,3 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paymentAmount: {x: 3, y: 5}
   dropTag: Food
+  air: {x: 30, y: 3}

@@ -12,6 +12,8 @@ public class FoodDropSystem : GameSystem
 
     [SerializeField, BoxGroup("Developer")] [Tag] string dropTag;
 
+    [SerializeField, BoxGroup("Crea")] Vector2 air;
+
     public override void OnInit()
     {
         game.Player.Trigger.OnTriggerEnterEvent += TriggerEnterCheck;
@@ -34,6 +36,15 @@ public class FoodDropSystem : GameSystem
     }
     IEnumerator FoodDrop(PeopleData people)
     {
+        Signals.Get<ControllerChangeSignal>().Dispatch(ControllerType.Airplane);
+        game.Airplane.transform.DORotate(new Vector3(0f, 0f, air.x), air.y)
+                .OnComplete(() =>
+                {
+                    //Signals.Get<NavigationUpdateSignal>().Dispatch();
+
+
+                });
+
         for (int i = game.PlayerItemList.Count - 1; i >= 0; i--)
         {
             if (game.PlayerItemList[i].ItemType == people.FoodType)
@@ -53,13 +64,14 @@ public class FoodDropSystem : GameSystem
                 people.FoodAmount--;
                 Extensions.BubbleUIUpdate(BubbleUIType.Order, people.Component.BubblePoint, people.FoodAmount, people.FoodType);
 
-                
-
                 Signals.Get<VibrationSignal>().Dispatch(HapticTypes.LightImpact);
 
                 //crea
                 yield return new WaitForSeconds(0.1f);
 
+                float scale = 1f + (0.5f * (100 - (people.FoodAmount * 100 / 25)) / 100);
+                people.Transform.localScale = new Vector3(scale, scale, scale);
+                people.Transform.localPosition = new Vector3(0.5f * (100 - (people.FoodAmount * 100 / 25)) / 100, 0f, 0f);
                 people.Component.Renderer.SetBlendShapeWeight(0, 100 - (people.FoodAmount * 100 / 25));
 
                 if (people.FoodAmount <= 0)

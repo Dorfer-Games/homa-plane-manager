@@ -12,8 +12,6 @@ public class FoodOrderSystem : GameSystem
     [SerializeField, BoxGroup("Developer")] int orderStartAmount;
     [SerializeField, BoxGroup("Developer")] Vector2 foodAmount;
 
-    [SerializeField, BoxGroup("Crea")] Vector2 air;
-
     public override void OnInit()
     {
         Signals.Get<AirplaneStateSignal>().AddListener(AttentionCreate);
@@ -54,19 +52,13 @@ public class FoodOrderSystem : GameSystem
 
             game.PlayerItemList.Clear();
 
-            game.Airplane.transform.DORotate(new Vector3(0f, 0f, air.x), air.y)
-                .OnComplete(() =>
-                {
-                    //Signals.Get<NavigationUpdateSignal>().Dispatch();
-
-
-                });
-
             foreach (TriggerZoneComponent component in TriggerZoneComponent.Hashset.ToList())
                 component.transform.localPosition = Vector3.zero;
             //Signals.Get<AirplaneStateSignal>().Dispatch(AirplaneState.Landing);
 
             game.CreaID++;
+
+            Signals.Get<ControllerChangeSignal>().Dispatch(ControllerType.Player);
         }
 
         ZoneUpdate();
