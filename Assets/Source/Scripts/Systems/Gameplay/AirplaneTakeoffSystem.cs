@@ -51,8 +51,38 @@ public class AirplaneTakeoffSystem : GameSystem
                             .OnComplete(() =>
                             {
                                 Signals.Get<AirplaneStateSignal>().Dispatch(AirplaneState.Flight);
-                                Signals.Get<ControllerChangeSignal>().Dispatch(ControllerType.Player);
+                                Signals.Get<ControllerChangeSignal>().Dispatch(ControllerType.Crea);
                                 game.Ground.gameObject.SetActive(false);
+
+                                game.Airplane.transform.DOLocalRotate(new Vector3(0f, 0f, 40f), 2f)
+                                    .OnComplete(() =>
+                                    {
+                                        game.Airplane.transform.DOLocalRotate(new Vector3(0f, 0f, 40f), 0f)
+                                            .OnComplete(() =>
+                                            {
+                                                foreach (var people in game.PeoplePlaneList)
+                                                {
+                                                    foreach (var plane in game.Airplane.PlaceList)
+                                                    {
+                                                        if (people.Place == plane.PlaceList[0])
+                                                        {
+                                                            people.Component.Crea.SetActive(true);
+                                                            people.Place2 = game.Airplane.placeCreaList[game.PeopleFromPlaneList.Count];
+                                                            game.PeopleFromPlaneList.Add(people);
+
+                                                            game.Airplane.transform.DOLocalMove(game.Airplane.transform.localPosition, 2.5f)
+                                                                .OnComplete(() =>
+                                                                {
+                                                                    Signals.Get<ControllerChangeSignal>().Dispatch(ControllerType.Player);
+                                                                });
+
+                                                            game.Airplane.transform.DOLocalRotate(Vector3.zero, 5f);
+                                                        }
+                                                            
+                                                    }
+                                                }
+                                            });
+                                    });
                             });
 
                         Signals.Get<EffectSignal>().Dispatch(Camera.main.transform, EffectType.Camera, new Vector3(cooldown_2 * 1.2f, 0f, 0f));

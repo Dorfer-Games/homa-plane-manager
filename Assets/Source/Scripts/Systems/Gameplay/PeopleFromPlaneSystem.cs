@@ -30,20 +30,12 @@ public class PeopleFromPlaneSystem : GameSystem
 
                 break;
             case 0:
-                people.Component.Agent.speed = people.Component.Speed * 1.5f;
-                people.Component.Agent.stoppingDistance = stoppingDistance;
-                people.Target = component.PointList[Random.Range(0, component.PointList.Count)];
+                people.Component.Agent.speed = people.Component.Speed;
+                people.Target = game.Player.transform;
 
                 people.Transform.parent = people.Place.PlacePoint;
                 people.Transform.localPosition = Vector3.zero;
                 people.Transform.localEulerAngles = Vector3.zero;
-
-                /*
-                people.Baggage.transform.parent = people.Component.BaggagePoint;
-                people.Baggage.transform.localPosition = Vector3.zero;
-                foreach (var shelf in ShelfComponent.Hashset.ToList()) 
-                    shelf.ItemList.Clear();
-                */
 
                 people.Component.Agent.enabled = true;
                 people.Component.Collider.enabled = true;
@@ -57,19 +49,52 @@ public class PeopleFromPlaneSystem : GameSystem
                 {
                     people.Component.Agent.SetDestination(people.Target.position);
                     Extensions.PeopleAnimation(people.Component.Animator, "isRun", people.Component.Agent.speed);
+
+                    distance = Vector3.Distance(people.Place2.PlacePoint.position, people.Transform.position);
+                    if (distance < 5f) people.Target = people.Place2.PlacePoint;
                 }
                 else
                 {
                     people.Component.Agent.ResetPath();
                     Extensions.PeopleAnimation(people.Component.Animator, "None");
 
-                    people.Stage = 2;
+                    if (people.Target != game.Player.transform) people.Stage = 2;
+                }
+
+
+                distance = Vector3.Distance(people.Target.position, people.Transform.position);
+                if (distance - distanceOffset > stoppingDistance)
+                {
+                    people.Component.Agent.SetDestination(people.Target.position);
+                    Extensions.PeopleAnimation(people.Component.Animator, "isRun", people.Component.Agent.speed);
+
+                    distance = Vector3.Distance(people.Place2.PlacePoint.position, people.Transform.position);
+                    if (distance < 7f) {
+                        people.Component.Crea.SetActive(false);
+                        people.Target = people.Place2.PlacePoint; 
+                    }
+                }
+                else
+                {
+                    people.Component.Agent.ResetPath();
+                    Extensions.PeopleAnimation(people.Component.Animator, "None");
+
+                    if (people.Target != game.Player.transform) people.Stage = 2;
                 }
 
                 break;
             case 2:
+                people.Component.Agent.enabled = false;
+                people.Component.Collider.enabled = false;
+
+                people.Transform.parent = people.Place2.PeoplePoint;
+                people.Transform.localPosition = Vector3.zero;
+                people.Transform.localEulerAngles = Vector3.zero;
+
                 game.PeopleFromPlaneList.Remove(people);
-                Destroy(people.Transform.gameObject);
+
+                Extensions.PeopleAnimation(people.Component.Animator, "isSit");
+                people.Stage = 0;
 
                 break;
         }

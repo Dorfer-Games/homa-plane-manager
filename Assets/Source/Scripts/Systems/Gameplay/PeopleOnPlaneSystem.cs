@@ -26,7 +26,7 @@ public class PeopleOnPlaneSystem : GameSystem
             case 0:
                 people.Component.Agent.speed = people.Component.Speed;
                 people.Component.Agent.stoppingDistance = stoppingDistance;
-                people.Target = people.Place.PlacePoint;
+                people.Target = game.Player.transform;
                 people.Stage = 1;
 
                 break;
@@ -36,13 +36,20 @@ public class PeopleOnPlaneSystem : GameSystem
                 {
                     people.Component.Agent.SetDestination(people.Target.position);
                     Extensions.PeopleAnimation(people.Component.Animator, "isRun", people.Component.Agent.speed);
+
+                    distance = Vector3.Distance(people.Place.PlacePoint.position, people.Transform.position);
+                    if (distance < 7f) 
+                    { 
+                        people.Target = people.Place.PlacePoint;
+                        people.Component.Crea.SetActive(false);
+                    }
                 }
                 else
                 {
                     people.Component.Agent.ResetPath();
                     Extensions.PeopleAnimation(people.Component.Animator, "None");
 
-                    people.Stage = 2;
+                    if (people.Target != game.Player.transform) people.Stage = 2;
                 }
 
                 break;

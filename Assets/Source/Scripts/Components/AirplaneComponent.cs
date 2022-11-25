@@ -19,6 +19,8 @@ public class AirplaneComponent : MonoBehaviour
 
     [SerializeField, BoxGroup("Debug"), ReadOnly] bool isLadderOpen;
 
+    public List<PlaceComponent> placeCreaList;
+
     public Collider DoorCollider => doorCollider;
     public bool IsLadderOpen => isLadderOpen;
     public GameObject LadderLowerZone => ladderLowerZone;

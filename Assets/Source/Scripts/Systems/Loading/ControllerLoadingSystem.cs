@@ -33,6 +33,12 @@ public class ControllerLoadingSystem : GameSystem
                 component.VirtualCamera.Follow = game.Airplane.transform;
 
                 break;
+
+            case ControllerType.Crea:
+                component.VirtualCamera.LookAt = game.Airplane.transform;
+                component.VirtualCamera.Follow = game.Airplane.transform;
+
+                break;
         }
     }
     void ControllerChange(ControllerType type)

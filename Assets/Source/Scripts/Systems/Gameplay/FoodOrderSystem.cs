@@ -32,8 +32,8 @@ public class FoodOrderSystem : GameSystem
             Extensions.BubbleUIUpdate(BubbleUIType.Attention, people.Component.BubblePoint);
         }
 
-        for (int i = 0; i < Mathf.Clamp(orderStartAmount, 0, HungryAmount()); i++)
-            OrderCreate();
+        //for (int i = 0; i < Mathf.Clamp(orderStartAmount, 0, HungryAmount()); i++)
+        //    OrderCreate();
     }
     void OrderCreate()
     {
