@@ -22,7 +22,7 @@ public class AirplaneTakeoffSystem : GameSystem
 
         if (isCheck)
         {
-            if (game.PeopleOnPlaneList.Count > 0 || game.BaggageList.Count < game.PeoplePlaneList.Count) return;
+            if (game.PeopleOnPlaneList.Count > 0) return;
             if (game.Player.transform.position.y < game.Airplane.LadderRaiseZone.transform.position.y - 0.25f ||
                 game.Player.transform.position.x > game.Airplane.Ladder.position.x - 1f) return;
 
