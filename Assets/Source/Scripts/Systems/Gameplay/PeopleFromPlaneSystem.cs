@@ -78,8 +78,8 @@ public class PeopleFromPlaneSystem : GameSystem
                         {
                             Signals.Get<EffectSignal>().Dispatch(game.Airplane.TutorialPointList[3], EffectType.Crea, Vector3.zero);
 
-                            people.Transform.DOScale(new Vector3(1f, 1f, 1f), 0.75f);
-                            people.Component.Renderer.SetBlendShapeWeight(0, 0);
+                            people.Transform.DOScale(new Vector3(1f, 1f, 1f), 1f);
+                            DOTween.To(Blend, 100f, 0f, 1f);
                         });
                 }
 
@@ -117,8 +117,8 @@ public class PeopleFromPlaneSystem : GameSystem
                             people.Stage = 4;
                         });
 
-                people.Transform.DOScale(new Vector3(1f, 1f, 1f), 0.75f);
-                people.Component.Renderer.SetBlendShapeWeight(0, 0);
+                //people.Transform.DOScale(new Vector3(1f, 1f, 1f), 0.75f);
+                //people.Component.Renderer.SetBlendShapeWeight(0, 0);
 
                 break;
 
@@ -197,5 +197,9 @@ public class PeopleFromPlaneSystem : GameSystem
 
                 break;
         }
+    }
+    void Blend(float value)
+    {
+        game.PeopleFromPlaneList[0].Component.Renderer.SetBlendShapeWeight(0, value);
     }
 }
