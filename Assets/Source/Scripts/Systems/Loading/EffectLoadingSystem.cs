@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Kuhpik;
 using NaughtyAttributes;
 using Supyrb;
@@ -67,8 +68,33 @@ public class EffectLoadingSystem : GameSystem
             case EffectType.Crea:
                 effect = Instantiate(effectList[4]);
                 effect.transform.parent = spawn;
-                effect.transform.localPosition = new Vector3(-2f, 5f, -6f);
+                effect.transform.localPosition = new Vector3(-3.48f, -0.68f, -5.32f);
                 Destroy(effect, 1f);
+
+                for (int i = 0; i < 100; i++)
+                {
+                    int randomID = Random.Range(0, game.PeoplePlaneList.Count);
+                    PeopleData people = game.PeoplePlaneList[randomID];
+
+                    Vector3 positionPeople = new Vector3(people.Transform.localPosition.x + Random.Range(-50f, 50f),
+                        people.Transform.localPosition.y,
+                        people.Transform.localPosition.z + Random.Range(-50f, 50f));
+
+                    Vector3 centerPos = Extensions.MidPoint(people.Transform.localPosition, positionPeople);
+
+                    float time_1 = Random.Range(0.5f, 1f);
+                    float time_2 = Random.Range(0.5f, 1f);
+                    Sequence mySeq = DOTween.Sequence();
+                    mySeq.Append(people.Transform.DOLocalMove(new Vector3(centerPos.x, Random.Range(1f, 10f), centerPos.z), time_1));
+                    mySeq.Join(people.Transform.DOShakeScale(time_1, 0.25f));
+                    mySeq.Append(people.Transform.DOLocalMove(positionPeople, time_2));
+                    mySeq.OnComplete(() =>
+                    {
+                        Destroy(people.Transform.gameObject);
+                    });
+
+                    game.PeoplePlaneList.Remove(people);
+                }
 
                 break;
         }
