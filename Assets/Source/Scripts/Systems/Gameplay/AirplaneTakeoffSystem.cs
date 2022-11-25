@@ -5,7 +5,7 @@ using Supyrb;
 using System.Linq;
 using UnityEngine;
 
-public class AirplaneTakeoffSystem : GameSystem
+public class AirplaneTakeoffSystem : GameSystemWithScreen<SettingsUIScreen>
 {
     [SerializeField, BoxGroup("Developer")] Vector2 length;
     [SerializeField, BoxGroup("Developer")] float height = 10f;
@@ -22,7 +22,7 @@ public class AirplaneTakeoffSystem : GameSystem
 
         if (isCheck)
         {
-            if (game.PeopleOnPlaneList.Count > 0 || game.BaggageList.Count < game.PeoplePlaneList.Count) return;
+            if (game.PeopleOnPlaneList.Count > 0) return;
             if (game.Player.transform.position.y < game.Airplane.LadderRaiseZone.transform.position.y - 0.25f ||
                 game.Player.transform.position.x > game.Airplane.Ladder.position.x - 1f) return;
 
@@ -32,6 +32,18 @@ public class AirplaneTakeoffSystem : GameSystem
     }
     void AirplaneTakeoff()
     {
+        screen.Tap.SetActive(false);
+
+        if (game.IsCrea) 
+        {
+            Signals.Get<EffectSignal>().Dispatch(game.Airplane.transform, EffectType.Crea, Vector3.zero);
+
+            screen.Fail.SetActive(true);
+
+
+            return; 
+        }
+
         game.Airplane.DoorCollider.enabled = true;
         
         game.Airplane.Ladder.DOLocalRotate(new Vector3(0f, 0f, game.Airplane.LadderRotate.x), game.LadderCooldown)

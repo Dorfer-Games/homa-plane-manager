@@ -39,6 +39,8 @@ namespace Kuhpik
 
         public GameObject MoneyPrefab;
 
+        public bool IsCrea;
+
 
 
         // OLD

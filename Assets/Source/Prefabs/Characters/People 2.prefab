@@ -88,7 +88,7 @@ MonoBehaviour:
   animator: {fileID: 531556975143571098}
   trigger: {fileID: 0}
   agent: {fileID: 2803565954951632956}
-  speed: 6
+  speed: 15
   coll: {fileID: 8183781466895415129}
   baggagePoint: {fileID: 1044870313181292671}
   stackPoint: {fileID: 0}
@@ -156,7 +156,7 @@ NavMeshAgent:
   m_Height: 0.1
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!1 &1855558415353013695
 GameObject:
   m_ObjectHideFlags: 0

@@ -47,17 +47,23 @@ public class PeopleOnPlaneSystem : GameSystem
 
                 break;
             case 2:
+
                 people.Component.Agent.enabled = false;
                 people.Component.Collider.enabled = false;
-
-                people.Transform.parent = people.Place.PeoplePoint;
-                people.Transform.localPosition = Vector3.zero;
-                people.Transform.localEulerAngles = Vector3.zero;
 
                 game.PeopleOnPlaneList.Remove(people);
                 game.PeoplePlaneList.Add(people);
 
-                Extensions.PeopleAnimation(people.Component.Animator, "isSit");
+                people.Transform.parent = people.Place.PeoplePoint;
+
+                if (!people.PlaceBlock.isCrea) 
+                {
+                    people.Transform.localPosition = Vector3.zero;
+                    people.Transform.localEulerAngles = Vector3.zero;
+
+                    Extensions.PeopleAnimation(people.Component.Animator, "isSit"); 
+                }
+                
                 people.Stage = 0;
 
                 break;

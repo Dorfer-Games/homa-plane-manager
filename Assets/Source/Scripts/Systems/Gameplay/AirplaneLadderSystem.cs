@@ -4,12 +4,15 @@ using Kuhpik;
 using MoreMountains.NiceVibrations;
 using NaughtyAttributes;
 using Supyrb;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AirplaneLadderSystem : GameSystem
+public class AirplaneLadderSystem : GameSystemWithScreen<SettingsUIScreen>
 {
     [SerializeField, BoxGroup("Developer")] float ladderCooldown = 1f;
+
+    public bool IsCrea;
 
     public override void OnInit()
     {
@@ -22,6 +25,8 @@ public class AirplaneLadderSystem : GameSystem
         game.Airplane.LadderRaiseZone.SetActive(false);
         game.Airplane.BaggageZone.SetActive(false);
         game.Airplane.DoorCollider.enabled = true;
+
+        game.IsCrea = IsCrea;
     }
     void LadderAction(FillZoneComponent zone)
     {
@@ -31,7 +36,7 @@ public class AirplaneLadderSystem : GameSystem
             game.Airplane.BaggageZone.SetActive(true);
 
             if (!game.Airplane.IsLadderOpen) LadderOpen(game.PeoplePlatformList, game.PeopleOnPlaneList);
-            else PeopleRun(game.PeoplePlatformList, game.PeopleOnPlaneList);
+            else StartCoroutine(PeopleRun(game.PeoplePlatformList, game.PeopleOnPlaneList));
 
             Signals.Get<VibrationSignal>().Dispatch(HapticTypes.MediumImpact);
 
@@ -70,21 +75,83 @@ public class AirplaneLadderSystem : GameSystem
 
                   game.Airplane.BaggageZone.SetActive(true);
 
-                  PeopleRun(from, to);
+                  DOTween.To(Blend, 0f, 0f, 5f)
+                      .OnComplete(() =>
+                      {
+                          screen.Tap.SetActive(true);
+
+                          StartCoroutine(PeopleRun(from, to));
+                      });
               });
     }
 
-    void PeopleRun(List<PeopleData> from, List<PeopleData> to)
+    IEnumerator PeopleRun(List<PeopleData> from, List<PeopleData> to)
     {
         Signals.Get<NavigationUpdateSignal>().Dispatch();
 
-        foreach (var people in from)
+        int amount = from.Count;
+        if (!IsCrea) amount = 24;
+
+        //blend
+        if (IsCrea) 
         {
-            people.Component.Agent.enabled = true;
-            to.Add(people);
+            float time = 6.6f;
+
+            game.Airplane.Ladder.DOLocalRotate(new Vector3(0f, 0f, game.Airplane.LadderRotate.y), time)
+              .OnComplete(() =>
+              {
+                  foreach (var place in game.Airplane.PlaceList)
+                  {
+                      if (place.isCrea)
+                      {
+                          foreach (var _place in place.PlaceList)
+                              _place.transform.DOShakeScale(time * 1.3f, 0.05f);
+
+                      }
+                  }
+              });
+
+            DOTween.To(Blend, 0f, 0f, time)
+              .OnComplete(() =>
+              {
+                  /*
+                  game.Airplane.NavMesh.DOScale(new Vector3(35f, 
+                      game.Airplane.NavMesh.localScale.y, 
+                      game.Airplane.NavMesh.localScale.z), 5f);
+                  */
+                  float time = 3f;
+
+                  foreach (var place in game.Airplane.PlaceLeftOne)
+                      place.DOLocalMoveX(game.Airplane.Left.x, time).SetEase(Ease.Linear);
+
+                  foreach (var place in game.Airplane.PlaceLeftTwo)
+                      place.DOLocalMoveX(game.Airplane.Left.y, time).SetEase(Ease.Linear);
+
+                  foreach (var place in game.Airplane.PlaceRightOne)
+                      place.DOLocalMoveX(game.Airplane.Right.x, time).SetEase(Ease.Linear);
+
+                  foreach (var place in game.Airplane.PlaceRightTwo)
+                      place.DOLocalMoveX(game.Airplane.Right.y, time).SetEase(Ease.Linear);
+
+
+                  DOTween.To(Blend, 0f, 100f, time).SetEase(Ease.Linear);
+              });
+        }
+
+        for (int i = 0; i < amount; i++)
+        {
+            from[i].Component.Agent.enabled = true;
+            to.Add(from[i]);
+
+            yield return new WaitForSeconds(0.02f);
         }
 
         from.Clear();
+    }
+    void Blend(float value)
+    {
+        foreach (var blend in game.Airplane.Blend)
+            blend.SetBlendShapeWeight(0, value);
     }
     void LadderZoneCheck(AirplaneState state)
     {

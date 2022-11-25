@@ -43,4 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13ef97d5718b3254d93e71b9d91ad20c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stoppingDistance: 0.5
+  stoppingDistance: 0

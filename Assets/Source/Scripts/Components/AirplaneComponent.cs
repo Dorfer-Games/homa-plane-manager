@@ -19,6 +19,18 @@ public class AirplaneComponent : MonoBehaviour
 
     [SerializeField, BoxGroup("Debug"), ReadOnly] bool isLadderOpen;
 
+    [SerializeField, BoxGroup("Developer")] public List<SkinnedMeshRenderer> Blend;
+
+    public Vector2 Left;
+    public Vector2 Right;
+
+    public List<Transform> PlaceLeftOne;
+    public List<Transform> PlaceLeftTwo;
+    public List<Transform> PlaceRightOne;
+    public List<Transform> PlaceRightTwo;
+
+    public Transform NavMesh;
+
     public Collider DoorCollider => doorCollider;
     public bool IsLadderOpen => isLadderOpen;
     public GameObject LadderLowerZone => ladderLowerZone;

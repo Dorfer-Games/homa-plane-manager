@@ -70,7 +70,7 @@ public class PeopleSpawnSystem : GameSystem
 
                 game.PeoplePlatformList.Add(peopleData);
 
-                BaggageCreate(peopleData);
+                //BaggageCreate(peopleData);
             }
         }
     }

@@ -63,6 +63,14 @@ public class EffectLoadingSystem : GameSystem
                 Destroy(effect, position.x);
 
                 break;
+
+            case EffectType.Crea:
+                effect = Instantiate(effectList[4]);
+                effect.transform.parent = spawn;
+                effect.transform.localPosition = new Vector3(-2f, 5f, -6f);
+                Destroy(effect, 1f);
+
+                break;
         }
     }
 }

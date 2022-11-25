@@ -7,6 +7,8 @@ public class PlaceBlockComponent : MonoBehaviour
     [SerializeField, BoxGroup("Developer")] List<PlaceComponent> placeList;
     [SerializeField, BoxGroup("Developer")] GameObject zone;
 
+    public bool isCrea;
+
     public GameObject Zone => zone;
     public List<PlaceComponent> PlaceList => placeList;
 
